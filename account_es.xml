@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--The COPYRIGHT file at the top level of this repository
+contains the full copyright notices and license terms. -->
+<tryton>
+    <data depends="account_es" grouped="1">
+        <!-- [08] - IRPF Retenciones Modelo 111 (Base Deducible) -->
+        <record model="aeat.111.mapping-account.tax.code.template" id="aeat_111_mapping_code_08_val1">
+            <field name="mapping" ref="aeat_111_mapping_code_08"/>
+            <field name="code" ref="account_es.irpf_111_base"/>
+        </record>
+        <!-- [09] - IRPF Retenciones Modelo 111 (Cuota Deducible) -->
+        <record model="aeat.111.mapping-account.tax.code.template" id="aeat_111_mapping_code_09_val1">
+            <field name="mapping" ref="aeat_111_mapping_code_09"/>
+            <field name="code" ref="account_es.irpf_111_cuota"/>
+        </record>
+    </data>
+</tryton>
