@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<!--The COPYRIGHT file at the top level of this repository
+contains the full copyright notices and license terms. -->
+<tryton>
+    <data>
+        <record model="ir.ui.view" id="aeat_111_report_form_view">
+            <field name="model">aeat.111.report</field>
+            <field name="type">form</field>
+            <field name="name">aeat_111_report_form</field>
+        </record>
+        <record model="ir.ui.view" id="aeat_111_report_tree_view">
+            <field name="model">aeat.111.report</field>
+            <field name="type">tree</field>
+            <field name="name">aeat_111_report_tree</field>
+        </record>
+        <record model="ir.action.act_window" id="act_aeat_111_report">
+            <field name="name">AEAT 111 Report</field>
+            <field name="res_model">aeat.111.report</field>
+            <field name="search_value" eval="" pyson="1"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_aeat_111_report_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="aeat_111_report_tree_view"/>
+            <field name="act_window" ref="act_aeat_111_report"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_aeat_111_report_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="aeat_111_report_form_view"/>
+            <field name="act_window" ref="act_aeat_111_report"/>
+        </record>
+        <record model="ir.model.access" id="access_aeat_111_report">
+            <field name="model" search="[('model', '=', 'aeat.111.report')]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_aeat_111_report_admin">
+            <field name="model" search="[('model', '=', 'aeat.111.report')]"/>
+            <field name="group" ref="account.group_account"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.ui.view" id="aeat_111_mapping_form_view">
+            <field name="model">aeat.111.mapping</field>
+            <field name="type">form</field>
+            <field name="name">aeat_111_mapping_form</field>
+        </record>
+        <record model="ir.ui.view" id="aeat_111_mapping_tree_view">
+            <field name="model">aeat.111.mapping</field>
+            <field name="type">tree</field>
+            <field name="name">aeat_111_mapping_tree</field>
+        </record>
+        <record model="ir.action.act_window" id="act_aeat_111_mapping">
+            <field name="name">AEAT 111 mapping</field>
+            <field name="res_model">aeat.111.mapping</field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_aeat_111_mapping_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="aeat_111_mapping_tree_view"/>
+            <field name="act_window" ref="act_aeat_111_mapping"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_aeat_111_mapping_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="aeat_111_mapping_form_view"/>
+            <field name="act_window" ref="act_aeat_111_mapping"/>
+        </record>
+        <record model="ir.model.access" id="access_aeat_111_mapping">
+            <field name="model" search="[('model', '=', 'aeat.111.mapping')]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_aeat_111_mapping_admin">
+            <field name="model" search="[('model', '=', 'aeat.111.mapping')]"/>
+            <field name="group" ref="account.group_account"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <!-- register buttons -->
+        <record model="ir.model.button" id="aeat_111_report_process_button">
+            <field name="name">process</field>
+            <field name="string">Process</field>
+            <field name="model" search="[('model', '=', 'aeat.111.report')]"/>
+        </record>
+        <record model="ir.model.button" id="aeat_111_report_cancel_button">
+            <field name="name">cancel</field>
+            <field name="string">Cancel</field>
+            <field name="model" search="[('model', '=', 'aeat.111.report')]"/>
+        </record>
+        <record model="ir.model.button" id="aeat_111_report_draft_button">
+            <field name="name">draft</field>
+            <field name="string">Draft</field>
+            <field name="model" search="[('model', '=', 'aeat.111.report')]"/>
+        </record>
+        <record model="ir.model.button" id="aeat_111_report_calculate_button">
+            <field name="name">calculate</field>
+            <field name="string">Calculate</field>
+            <field name="model" search="[('model', '=', 'aeat.111.report')]"/>
+        </record>
+
+        <!-- Menus -->
+        <menuitem action="act_aeat_111_report" id="menu_aeat_111_report"
+            parent="account.menu_reporting" sequence="111"
+            name="AEAT 111 Report"/>
+
+        <menuitem action="act_aeat_111_mapping" id="menu_aeat_111_mapping"
+            parent="account.menu_taxes" sequence="111"
+            name="AEAT 111 Mapping"/>
+
+        <record model="ir.rule.group" id="rule_group_aeat111">
+            <field name="name">User in company</field>
+            <field name="model" search="[('model', '=', 'aeat.111.report')]"/>
+            <field name="global_p" eval="True"/>
+        </record>
+        <record model="ir.rule" id="rule_aeat_111_1">
+            <field name="domain" eval="[['company', 'in', Eval('companies', [])]]" pyson="1" />
+            <field name="rule_group" ref="rule_group_aeat111"/>
+        </record>
+
+        <record model="ir.rule.group" id="rule_group_aeat111_mapping">
+            <field name="name">User in company</field>
+            <field name="model" search="[('model', '=', 'aeat.111.mapping')]"/>
+            <field name="global_p" eval="True"/>
+        </record>
+        <record model="ir.rule" id="rule_aeat_111_mapping_1">
+            <field name="domain" eval="[['company', 'in', Eval('companies', [])]]" pyson="1" />
+            <field name="rule_group" ref="rule_group_aeat111_mapping"/>
+        </record>
+    </data>
+</tryton>

@@ -1,0 +1,597 @@
+#
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+#, fuzzy
+msgctxt "field:aeat.111.mapping,aeat111_field:"
+msgid "Field"
+msgstr "Camp"
+
+#, fuzzy
+msgctxt "field:aeat.111.mapping,code:"
+msgid "Tax Code"
+msgstr "Codi Tributari"
+
+#, fuzzy
+msgctxt "field:aeat.111.mapping,code_by_companies:"
+msgid "Tax Code"
+msgstr "Codi Tributari"
+
+#, fuzzy
+msgctxt "field:aeat.111.mapping,company:"
+msgid "Company"
+msgstr "Companyia"
+
+#, fuzzy
+msgctxt "field:aeat.111.mapping,template:"
+msgid "Template"
+msgstr "Plantilla"
+
+#, fuzzy
+msgctxt "field:aeat.111.mapping-account.tax.code,code:"
+msgid "Tax Code"
+msgstr "Codi Tributari"
+
+#, fuzzy
+msgctxt "field:aeat.111.mapping-account.tax.code,mapping:"
+msgid "Mapping"
+msgstr "Cartografia"
+
+#, fuzzy
+msgctxt "field:aeat.111.mapping-account.tax.code.template,code:"
+msgid "Tax Code Template"
+msgstr "Plantilla de codi fiscal"
+
+#, fuzzy
+msgctxt "field:aeat.111.mapping-account.tax.code.template,mapping:"
+msgid "Mapping"
+msgstr "Cartografia"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,awards_in_kind_parties:"
+msgid "Awards In-Kind Parties"
+msgstr "Premis Festes en espècie"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,awards_in_kind_payments_amount:"
+msgid "Awards In-Kind Payments Amount"
+msgstr "Import dels pagaments en espècie dels premis"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,awards_in_kind_value_benefits:"
+msgid "Awards In-Kind Value Benefits"
+msgstr "Premis Beneficis de valor en espècie"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,awards_monetary_parties:"
+msgid "Awards Monetary Parties"
+msgstr "Premis Partits Monetaris"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,awards_monetary_payments:"
+msgid "Awards Monetary Payments"
+msgstr "Premis Pagaments Monetaris"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,awards_monetary_withholdings_amount:"
+msgid "Awards Monetary Withholdings Amount"
+msgstr "Adjudicacions Import de les retencions monetàries"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,bank_account:"
+msgid "Bank Account"
+msgstr "Compte bancari"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,calculation_date:"
+msgid "Calculation Date"
+msgstr "Data de càlcul"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,company:"
+msgid "Company"
+msgstr "Companyia"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,company_name:"
+msgid "Company Name"
+msgstr "Nom de la companyia"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,company_party:"
+msgid "Company Party"
+msgstr "Festa d'empresa"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,company_surname:"
+msgid "Company Surname"
+msgstr "Cognom de l'empresa"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,company_vat:"
+msgid "VAT"
+msgstr "IVA"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,complementary_declaration:"
+msgid "Complementary Declaration"
+msgstr "Declaració complementària"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,currency:"
+msgid "Currency"
+msgstr "Moneda"
+
+#, fuzzy
+msgctxt ""
+"field:aeat.111.report,economic_activities_productivity_in_kind_parties:"
+msgid "Economic Activities Productivity In-Kind Parties"
+msgstr "Activitats econòmiques Productivitat Festes en espècie"
+
+#, fuzzy
+msgctxt ""
+"field:aeat.111.report,economic_activities_productivity_in_kind_payments_amount:"
+msgid "Economic Activities Productivity In-Kind Payments Amount"
+msgstr "Activitats econòmiques Productivitat Pagaments en espècie Import"
+
+#, fuzzy
+msgctxt ""
+"field:aeat.111.report,economic_activities_productivity_in_kind_value_benefits:"
+msgid "Economic Activities Productivity In-Kind Value Benefits"
+msgstr "Activitats econòmiques Productivitat Valor en espècie Beneficis"
+
+#, fuzzy
+msgctxt ""
+"field:aeat.111.report,economic_activities_productivity_monetary_parties:"
+msgid "Economic Activities Productivity Monetary Parties"
+msgstr "Activitats Econòmiques Productivitat Partits Monetaris"
+
+#, fuzzy
+msgctxt ""
+"field:aeat.111.report,economic_activities_productivity_monetary_payments:"
+msgid "Economic Activities Productivity Monetary"
+msgstr "Activitats Econòmiques Productivitat Monetària"
+
+#, fuzzy
+msgctxt ""
+"field:aeat.111.report,economic_activities_productivity_monetary_withholdings_amount:"
+msgid "Economic Activities Productivity Monetary Withholdings Amount"
+msgstr "Activitats econòmiques Productivitat Retencions monetàries Import"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,file_:"
+msgid "File"
+msgstr "Dossier"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,filename:"
+msgid "File Name"
+msgstr "Nom de l'arxiu"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,gains_forestry_exploitation_in_kind_parties:"
+msgid "Gains Forestry Exploitation In-Kind Parties"
+msgstr "Guanys Explotació Forestal Partides en espècie"
+
+#, fuzzy
+msgctxt ""
+"field:aeat.111.report,gains_forestry_exploitation_in_kind_payments_amount:"
+msgid "Gains Forestry Exploitation In-Kind Payments Amount"
+msgstr "Guanys Explotació Forestal Pagaments en espècie Import"
+
+#, fuzzy
+msgctxt ""
+"field:aeat.111.report,gains_forestry_exploitation_in_kind_value_benefits:"
+msgid "Gains Forestry Exploitation In-Kind Value Benefits"
+msgstr "Obté beneficis de valor en espècie per l'explotació forestal"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,gains_forestry_exploitation_monetary_parties:"
+msgid "Gains Forestry Exploitation Monetary Parties"
+msgstr "Guanys Explotació Forestal Partits Monetaris"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,gains_forestry_exploitation_monetary_payments:"
+msgid "Gains Forestry Exploitation Monetary Payments"
+msgstr "Guanys Explotació Forestal Pagaments Monetaris"
+
+#, fuzzy
+msgctxt ""
+"field:aeat.111.report,gains_forestry_exploitation_monetary_withholdings_amount:"
+msgid "Gains Forestry Exploitation Monetary Withholdings Amount"
+msgstr "Guanys Explotació forestal Import de retencions monetàries"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,image_rights_parties:"
+msgid "Image Rights Parties"
+msgstr "Partits dels drets d'imatge"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,image_rights_payments_amount:"
+msgid "Image Rights Payments Amount"
+msgstr "Import dels pagaments dels drets d'imatge"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,image_rights_service_payments:"
+msgid "Image Rights Service Payments"
+msgstr "Pagaments del servei de drets d'imatge"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,period:"
+msgid "Period"
+msgstr "Període"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,previous_declaration_receipt:"
+msgid "Previous Declaration Receipt"
+msgstr "Rebut de declaració prèvia"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,result:"
+msgid "Result"
+msgstr "Resultat"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,state:"
+msgid "State"
+msgstr "Estat"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,to_deduce:"
+msgid "To Deduce"
+msgstr "Deduir"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,type:"
+msgid "Declaration Type"
+msgstr "Tipus de declaració"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,withholdings_payments_amount:"
+msgid "Withholding and Payments"
+msgstr "Retencions i pagaments"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,work_productivity_in_kind_parties:"
+msgid "Work Productivity In-Kind Parties"
+msgstr "Productivitat laboral Festes en espècie"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,work_productivity_in_kind_payments_amount:"
+msgid "Work Productivity In-Kind Payments Amount"
+msgstr "Productivitat laboral Import dels pagaments en espècie"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,work_productivity_in_kind_value_benefits:"
+msgid "Work Productivity In-Kind Value Benefits"
+msgstr "Productivitat laboral Beneficis de valor en espècie"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,work_productivity_monetary_parties:"
+msgid "Work Productivity Monetary Parties"
+msgstr "Treball Productivitat Partits Monetaris"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,work_productivity_monetary_payments:"
+msgid "Work Productivity Monetary Payments"
+msgstr "Productivitat laboral Pagaments monetaris"
+
+#, fuzzy
+msgctxt ""
+"field:aeat.111.report,work_productivity_monetary_withholdings_amount:"
+msgid "Work Productivty Monetary Withholdings Amount"
+msgstr "Productivitat del treball Import de les retencions monetàries"
+
+#, fuzzy
+msgctxt "field:aeat.111.report,year:"
+msgid "Year"
+msgstr "Curs"
+
+#, fuzzy
+msgctxt "field:aeat.111.template.mapping,aeat111_field:"
+msgid "Field"
+msgstr "Camp"
+
+#, fuzzy
+msgctxt "field:aeat.111.template.mapping,code:"
+msgid "Tax Code Template"
+msgstr "Plantilla de codi fiscal"
+
+#, fuzzy
+msgctxt "help:aeat.111.report,to_deduce:"
+msgid ""
+"Exclusively in case of complementary self-assessment.Results to be entered "
+"from previous self-assessments for the same concept, year and period"
+msgstr ""
+"Exclusivament en cas d'autoavaluació complementària. Resultats que s'han "
+"d'introduir d'autoliquidacions prèvies pel mateix concepte, any i període."
+
+#, fuzzy
+msgctxt "model:aeat.111.mapping,name:"
+msgid "AEAT 111 TaxCode Mapping"
+msgstr "Mapeig de codis fiscals AEAT 111"
+
+#, fuzzy
+msgctxt "model:aeat.111.mapping-account.tax.code,name:"
+msgid "AEAT 111 TaxCode Mapping Codes Relation"
+msgstr "AEAT 111 Relació de codis de mapatge de codis fiscals"
+
+#, fuzzy
+msgctxt "model:aeat.111.mapping-account.tax.code.template,name:"
+msgid "AEAT 111 TaxCode Mapping Codes Relation"
+msgstr "AEAT 111 Relació de codis de mapatge de codis fiscals"
+
+#, fuzzy
+msgctxt "model:aeat.111.report,name:"
+msgid "AEAT 111 Report"
+msgstr "Informe AEAT 111"
+
+#, fuzzy
+msgctxt "model:aeat.111.template.mapping,name:"
+msgid "AEAT 111 TemplateTaxCode Mapping"
+msgstr "AEAT 111 Plantilla TaxCode Mapping"
+
+#, fuzzy
+msgctxt "model:ir.action,name:act_aeat_111_mapping"
+msgid "AEAT 111 mapping"
+msgstr "Cartografia AEAT 111"
+
+#, fuzzy
+msgctxt "model:ir.action,name:act_aeat_111_report"
+msgid "AEAT 111 Report"
+msgstr "Informe AEAT 111"
+
+#, fuzzy
+msgctxt "model:ir.message,text:msg_invalid_currency"
+msgid "Currency in AEAT 111 report \"%(name)s\" must be Euro."
+msgstr "La moneda de l'informe AEAT 111 \"%(name)s\" ha de ser l'euro."
+
+#, fuzzy
+msgctxt "model:ir.message,text:msg_invalid_year"
+msgid "The year \"%(year)s\" is not valid."
+msgstr "L'any \"%(year)s\" no és vàlid."
+
+#, fuzzy
+msgctxt "model:ir.message,text:msg_number_of_parties_to_hight"
+msgid "The numbers of parties \"%(parties)\", exeed the space reserved."
+msgstr "El nombre de partits \"%(parties)\", supera l'espai reservat."
+
+#, fuzzy
+msgctxt "model:ir.model.button,string:aeat_111_report_calculate_button"
+msgid "Calculate"
+msgstr "Calcular"
+
+#, fuzzy
+msgctxt "model:ir.model.button,string:aeat_111_report_cancel_button"
+msgid "Cancel"
+msgstr "Cancel · lar"
+
+#, fuzzy
+msgctxt "model:ir.model.button,string:aeat_111_report_draft_button"
+msgid "Draft"
+msgstr "Esborrany"
+
+#, fuzzy
+msgctxt "model:ir.model.button,string:aeat_111_report_process_button"
+msgid "Process"
+msgstr "Procés"
+
+#, fuzzy
+msgctxt "model:ir.rule.group,name:rule_group_aeat111"
+msgid "User in company"
+msgstr "Usuari a l'empresa"
+
+#, fuzzy
+msgctxt "model:ir.rule.group,name:rule_group_aeat111_mapping"
+msgid "User in company"
+msgstr "Usuari a l'empresa"
+
+#, fuzzy
+msgctxt "model:ir.ui.menu,name:menu_aeat_111_mapping"
+msgid "AEAT 111 Mapping"
+msgstr "AEAT 111 Cartografia"
+
+#, fuzzy
+msgctxt "model:ir.ui.menu,name:menu_aeat_111_report"
+msgid "AEAT 111 Report"
+msgstr "Informe AEAT 111"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,period:"
+msgid "April"
+msgstr "Abril"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,period:"
+msgid "August"
+msgstr "Agost"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,period:"
+msgid "December"
+msgstr "desembre"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,period:"
+msgid "February"
+msgstr "febrer"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,period:"
+msgid "First quarter"
+msgstr "Primer quart"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,period:"
+msgid "Fourth quarter"
+msgstr "Quart trimestre"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,period:"
+msgid "January"
+msgstr "gener"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,period:"
+msgid "July"
+msgstr "juliol"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,period:"
+msgid "June"
+msgstr "juny"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,period:"
+msgid "March"
+msgstr "març"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,period:"
+msgid "May"
+msgstr "maig"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,period:"
+msgid "November"
+msgstr "de novembre"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,period:"
+msgid "October"
+msgstr "Octubre"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,period:"
+msgid "Second quarter"
+msgstr "Segon trimestre"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,period:"
+msgid "September"
+msgstr "setembre"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,period:"
+msgid "Third quarter"
+msgstr "Tercer trimestre"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,state:"
+msgid "Calculated"
+msgstr "Calculat"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,state:"
+msgid "Cancelled"
+msgstr "Cancel·lat"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,state:"
+msgid "Done"
+msgstr "Fet"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,state:"
+msgid "Draft"
+msgstr "Esborrany"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,type:"
+msgid "Direct incomes in account"
+msgstr "Ingressos directes en compte"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,type:"
+msgid "Income"
+msgstr "Ingressos"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,type:"
+msgid "Income on CCT"
+msgstr "Ingressos per CCT"
+
+#, fuzzy
+msgctxt "selection:aeat.111.report,type:"
+msgid "Negative"
+msgstr "Negatiu"
+
+#, fuzzy
+msgctxt "view:aeat.111.report:"
+msgid "Awards"
+msgstr "Premis"
+
+#, fuzzy
+msgctxt "view:aeat.111.report:"
+msgid "Bank Information"
+msgstr "Informació bancària"
+
+#, fuzzy
+msgctxt "view:aeat.111.report:"
+msgid "Complementary"
+msgstr "Complementari"
+
+#, fuzzy
+msgctxt "view:aeat.111.report:"
+msgid "Economic Activity"
+msgstr "Activitat Econòmica"
+
+#, fuzzy
+msgctxt "view:aeat.111.report:"
+msgid "Gains Forestry Explitation"
+msgstr "Guanya l'Explicació Forestal"
+
+#, fuzzy
+msgctxt "view:aeat.111.report:"
+msgid "Image Rights"
+msgstr "Drets d'imatge"
+
+#, fuzzy
+msgctxt "view:aeat.111.report:"
+msgid "In-Kind"
+msgstr "En espècie"
+
+#, fuzzy
+msgctxt "view:aeat.111.report:"
+msgid "Monetary"
+msgstr "Monetària"
+
+#, fuzzy
+msgctxt "view:aeat.111.report:"
+msgid "Monetary or In-Kind"
+msgstr "Monetària o en espècie"
+
+#, fuzzy
+msgctxt "view:aeat.111.report:"
+msgid "Num of Parties:"
+msgstr "Nombre de parts:"
+
+#, fuzzy
+msgctxt "view:aeat.111.report:"
+msgid "Payments Amount:"
+msgstr "Import dels pagaments:"
+
+#, fuzzy
+msgctxt "view:aeat.111.report:"
+msgid "Payments:"
+msgstr "Pagaments:"
+
+#, fuzzy
+msgctxt "view:aeat.111.report:"
+msgid "Result"
+msgstr "Resultat"
+
+#, fuzzy
+msgctxt "view:aeat.111.report:"
+msgid "Value:"
+msgstr "Valor:"
+
+#, fuzzy
+msgctxt "view:aeat.111.report:"
+msgid "Withholding:"
+msgstr "Retenció:"
+
+#, fuzzy
+msgctxt "view:aeat.111.report:"
+msgid "Work Productivity"
+msgstr "Productivitat laboral"
