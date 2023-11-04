@@ -6,12 +6,12 @@ contains the full copyright notices and license terms. -->
         <!-- [08] -->
         <record model="aeat.111.template.mapping" id="aeat_111_mapping_code_08">
             <field name="aeat111_field"
-                search="[('name', '=','economic_activities_productivity_monetary_payments')]"/>
+                search="[('name', '=','economic_activities_productivity_monetary_payments'), ('module', '=', 'aeat_111')]"/>
         </record>
         <!-- [09] -->
         <record model="aeat.111.template.mapping" id="aeat_111_mapping_code_09">
             <field name="aeat111_field"
-                search="[('name', '=','economic_activities_productivity_monetary_withholdings_amount')]"/>
+                search="[('name', '=','economic_activities_productivity_monetary_withholdings_amount'), ('module', '=', 'aeat_111')]"/>
         </record>
     </data>
 </tryton>
