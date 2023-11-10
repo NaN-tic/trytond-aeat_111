@@ -20,29 +20,13 @@ _DEPENDS = ['state']
 _ZERO = Decimal("0.0")
 
 
-def remove_accents(unicode_string):
-    str_ = str if sys.version_info < (3, 0) else bytes
-    unicode_ = str if sys.version_info < (3, 0) else str
-    if isinstance(unicode_string, str_):
-        unicode_string_bak = unicode_string
-        try:
-            unicode_string = unicode_string_bak.decode('iso-8859-1')
-        except UnicodeDecodeError:
-            try:
-                unicode_string = unicode_string_bak.decode('utf-8')
-            except UnicodeDecodeError:
-                return unicode_string_bak
-
-    if not isinstance(unicode_string, unicode_):
-        return unicode_string
-
-    unicode_string_nfd = ''.join(
-        (c for c in unicodedata.normalize('NFD', unicode_string)
-            if (unicodedata.category(c) != 'Mn'
+def remove_accents(text):
+    return ''.join(c for c in unicodedata.normalize('NFD', text)
+        if (unicodedata.category(c) != 'Mn'
                 or c in ('\\u0327', '\\u0303'))  # Avoids normalize ç and ñ
-            ))
+        )
     # It converts nfd to nfc to allow unicode.decode()
-    return unicodedata.normalize('NFC', unicode_string_nfd)
+    #return unicodedata.normalize('NFC', unicode_string_nfd)
 
 
 class TemplateTaxCodeRelation(ModelSQL):
@@ -247,7 +231,12 @@ class Report(Workflow, ModelSQL, ModelView):
     company_vat = fields.Char('VAT')
     company_surname = fields.Char('Company Surname')
     company_name = fields.Char('Company Name')
-    year = fields.Integer("Year", required=True, states={
+    year = fields.Integer("Year", required=True,
+        domain=[
+            ('year', '>=', 1000),
+            ('year', '<=', 9999)
+            ],
+        states={
             'readonly': Eval('state').in_(['done', 'calculated']),
             }, depends=_DEPENDS)
     period = fields.Selection([
@@ -272,21 +261,33 @@ class Report(Workflow, ModelSQL, ModelView):
                 }, depends=_DEPENDS)
 
     work_productivity_monetary_parties = fields.Integer(
-        "Work Productivity Monetary Parties")
+        "Work Productivity Monetary Parties", required=True,
+        domain=[
+            ('work_productivity_monetary_parties', '>', 0),
+            ('work_productivity_monetary_parties', '<=', 99999999),
+            ])
     work_productivity_monetary_payments = fields.Numeric(
         "Work Productivity Monetary Payments", digits=(15, 2))
     work_productivity_monetary_withholdings_amount = fields.Numeric(
         "Work Productivty Monetary Withholdings Amount", digits=(15, 2))
 
     work_productivity_in_kind_parties = fields.Integer(
-        "Work Productivity In-Kind Parties")
+        "Work Productivity In-Kind Parties", required=True,
+        domain=[
+            ('work_productivity_in_kind_parties', '>', 0),
+            ('work_productivity_in_kind_parties', '<=', 99999999),
+            ])
     work_productivity_in_kind_value_benefits = fields.Numeric(
         "Work Productivity In-Kind Value Benefits", digits=(15, 2))
     work_productivity_in_kind_payments_amount = fields.Numeric(
         "Work Productivity In-Kind Payments Amount", digits=(15, 2))
 
     economic_activities_productivity_monetary_parties = fields.Integer(
-        "Economic Activities Productivity Monetary Parties")
+        "Economic Activities Productivity Monetary Parties", required=True,
+        domain=[
+            ('economic_activities_productivity_monetary_parties', '>', 0),
+            ('economic_activities_productivity_monetary_parties', '<=', 99999999),
+            ])
     economic_activities_productivity_monetary_payments = fields.Numeric(
         "Economic Activities Productivity Monetary",
         digits=(15, 2))
@@ -296,7 +297,11 @@ class Report(Workflow, ModelSQL, ModelView):
             digits=(15, 2)))
 
     economic_activities_productivity_in_kind_parties = fields.Integer(
-        "Economic Activities Productivity In-Kind Parties")
+        "Economic Activities Productivity In-Kind Parties", required=True,
+        domain=[
+            ('economic_activities_productivity_in_kind_parties', '>', 0),
+            ('economic_activities_productivity_in_kind_parties', '<=', 99999999),
+            ])
     economic_activities_productivity_in_kind_value_benefits = fields.Numeric(
         "Economic Activities Productivity In-Kind Value Benefits",
         digits=(15, 2))
@@ -304,20 +309,34 @@ class Report(Workflow, ModelSQL, ModelView):
         "Economic Activities Productivity In-Kind Payments Amount",
         digits=(15, 2))
 
-    awards_monetary_parties = fields.Integer("Awards Monetary Parties")
+    awards_monetary_parties = fields.Integer("Awards Monetary Parties",
+        required=True,
+        domain=[
+            ('awards_monetary_parties', '>', 0),
+            ('awards_monetary_parties', '<=', 99999999),
+            ])
     awards_monetary_payments = fields.Numeric(
         "Awards Monetary Payments", digits=(15, 2))
     awards_monetary_withholdings_amount = fields.Numeric(
         "Awards Monetary Withholdings Amount", digits=(15, 2))
 
-    awards_in_kind_parties = fields.Integer("Awards In-Kind Parties")
+    awards_in_kind_parties = fields.Integer("Awards In-Kind Parties",
+        required=True,
+        domain=[
+            ('awards_in_kind_parties', '>', 0),
+            ('awards_in_kind_parties', '<=', 99999999),
+            ])
     awards_in_kind_value_benefits = fields.Numeric(
         "Awards In-Kind Value Benefits", digits=(15, 2))
     awards_in_kind_payments_amount = fields.Numeric(
         "Awards In-Kind Payments Amount", digits=(15, 2))
 
     gains_forestry_exploitation_monetary_parties = fields.Integer(
-        "Gains Forestry Exploitation Monetary Parties")
+        "Gains Forestry Exploitation Monetary Parties", required=True,
+        domain=[
+            ('gains_forestry_exploitation_monetary_parties', '>', 0),
+            ('gains_forestry_exploitation_monetary_parties', '<=', 99999999),
+            ])
     gains_forestry_exploitation_monetary_payments = fields.Numeric(
         "Gains Forestry Exploitation Monetary Payments", digits=(15, 2))
     gains_forestry_exploitation_monetary_withholdings_amount = fields.Numeric(
@@ -325,13 +344,22 @@ class Report(Workflow, ModelSQL, ModelView):
         digits=(15, 2))
 
     gains_forestry_exploitation_in_kind_parties = fields.Integer(
-        "Gains Forestry Exploitation In-Kind Parties")
+        "Gains Forestry Exploitation In-Kind Parties", required=True,
+        domain=[
+            ('gains_forestry_exploitation_in_kind_parties', '>', 0),
+            ('gains_forestry_exploitation_in_kind_parties', '<=', 99999999),
+            ])
     gains_forestry_exploitation_in_kind_value_benefits = fields.Numeric(
         "Gains Forestry Exploitation In-Kind Value Benefits", digits=(15, 2))
     gains_forestry_exploitation_in_kind_payments_amount = fields.Numeric(
         "Gains Forestry Exploitation In-Kind Payments Amount", digits=(15, 2))
 
-    image_rights_parties = fields.Integer("Image Rights Parties")
+    image_rights_parties = fields.Integer("Image Rights Parties",
+        required=True,
+        domain=[
+            ('image_rights_parties', '>', 0),
+            ('image_rights_parties', '<=', 99999999),
+            ])
     image_rights_service_payments = fields.Numeric(
         "Image Rights Service Payments", digits=(15, 2))
     image_rights_payments_amount = fields.Numeric(
@@ -514,17 +542,6 @@ class Report(Workflow, ModelSQL, ModelView):
         if company_id:
             return Company(company_id).party.id
 
-    def pre_validate(self):
-        super().pre_validate()
-        self.check_year_digits()
-
-    @fields.depends('year')
-    def check_year_digits(self):
-        if self.year and len(str(self.year)) != 4:
-            raise UserError(
-                gettext('aeat_111.msg_invalid_year',
-                    year=self.year))
-
     @fields.depends('company')
     def on_change_with_company_party(self, name=None):
         if self.company:
@@ -566,30 +583,6 @@ class Report(Workflow, ModelSQL, ModelView):
     def get_filename(self, name):
         return 'aeat111-%s-%s.txt' % (
             self.year, self.period)
-
-    @classmethod
-    def validate(cls, reports):
-        for report in reports:
-            report.check_euro()
-            report.check_party_length()
-
-    def check_euro(self):
-        if (self.currency and self.company
-                and self.currency.code != self.company.currency.code):
-            raise UserError(gettext('aeat_111.msg_invalid_currency',
-                name=self.rec_name,
-                ))
-
-    def check_party_length(self):
-        columns = [x for x in self.__class__._fields if x.endswith('_parties')]
-        for column in columns:
-            value = getattr(self, column, None)
-            if not value:
-                continue
-            if value > 15:
-                raise UserError(gettext('aeat_111.msg_number_of_parties_to_hight',
-                    name=value,
-                    ))
 
     @classmethod
     @ModelView.button
@@ -697,7 +690,6 @@ class Report(Workflow, ModelSQL, ModelView):
         header = Record(aeat111.HEADER_RECORD)
         footer = Record(aeat111.FOOTER_RECORD)
         record = Record(aeat111.RECORD)
-        print("=======", [x for x in self.__class__._fields])
         columns = [x for x in self.__class__._fields if x != 'report']
         for column in columns:
             value = getattr(self, column, None)
