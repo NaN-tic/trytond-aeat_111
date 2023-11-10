@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <!--The COPYRIGHT file at the top level of this repository
 contains the full copyright notices and license terms. -->
-<form col="6">
+<form col="7">
     <label name="company_surname"/>
-    <field name="company_surname" colspan="2"/>
+    <field name="company_surname" colspan="3"/>
     <label name="company_name"/>
     <field name="company_name" colspan="2"/>
 
     <label name="type"/>
-    <field name="type"/>
+    <field name="type" colspan="2"/>
     <label name="year"/>
     <field name="year"/>
     <label name="period"/>
     <field name="period"/>
 
-    <separator id="work_productivity" string="Work Productivity" colspan="6"/>
+    <separator id="work_productivity" string="Work Productivity" colspan="7"/>
     <label string="Monetary" id="wor_productivity_monetary"/>
     <label string="Num of Parties:" name="work_productivity_monetary_parties"/>
     <field name="work_productivity_monetary_parties"/>
@@ -26,12 +26,12 @@ contains the full copyright notices and license terms. -->
     <label string="In-Kind" id="work_productivity_in_kind"/>
     <label string="Num of Parties:" name="work_productivity_in_kind_parties"/>
     <field name="work_productivity_in_kind_parties"/>
-    <label string="Value:" name="work_productivity_in-kind_value_benefits"/>
-    <field name="work_productivity_in-kind_value_benefits"/>
-    <label string="Payments Amount:" name="work_productivity_in-kind_payments_amount"/>
-    <field name="work_productivity_in-kind_payments_amount"/>
+    <label string="Value:" name="work_productivity_in_kind_value_benefits"/>
+    <field name="work_productivity_in_kind_value_benefits"/>
+    <label string="Payments Amount:" name="work_productivity_in_kind_payments_amount"/>
+    <field name="work_productivity_in_kind_payments_amount"/>
 
-    <separator id="economic_activity" string="Economic Activity" colspan="6"/>
+    <separator id="economic_activity" string="Economic Activity" colspan="7"/>
     <label string="Monetary" id="economic_activity_moneetary"/>
     <label string="Num of Parties:" name="economic_activities_productivity_monetary_parties"/>
     <field name="economic_activities_productivity_monetary_parties"/>
@@ -41,14 +41,14 @@ contains the full copyright notices and license terms. -->
     <field name="economic_activities_productivity_monetary_withholdings_amount"/>
 
     <label string="In-Kind" id="economic_activity_in_kind"/>
-    <label string="Num of Parties:" name="economic_activities_productivity_in-kind_parties"/>
-    <field name="economic_activities_productivity_in-kind_parties"/>
-    <label string="Value:" name="economic_activities_productivity_in-kind_value_benefits"/>
-    <field name="economic_activities_productivity_in-kind_value_benefits"/>
-    <label string="Payments Amount:" name="economic_activities_productivity_in-kind_payments_amount"/>
-    <field name="economic_activities_productivity_in-kind_payments_amount"/>
+    <label string="Num of Parties:" name="economic_activities_productivity_in_kind_parties"/>
+    <field name="economic_activities_productivity_in_kind_parties"/>
+    <label string="Value:" name="economic_activities_productivity_in_kind_value_benefits"/>
+    <field name="economic_activities_productivity_in_kind_value_benefits"/>
+    <label string="Payments Amount:" name="economic_activities_productivity_in_kind_payments_amount"/>
+    <field name="economic_activities_productivity_in_kind_payments_amount"/>
 
-    <separator id="awards" string="Awards" colspan="6"/>
+    <separator id="awards" string="Awards" colspan="7"/>
     <label string="Monetary" id="awards_monetary"/>
     <label string="Num of Parties:" name="awards_monetary_parties"/>
     <field name="awards_monetary_parties"/>
@@ -58,14 +58,14 @@ contains the full copyright notices and license terms. -->
     <field name="awards_monetary_withholdings_amount"/>
 
     <label string="In-Kind" id="awards_in_kind"/>
-    <label string="Num of Parties:" name="awards_in-kind_parties"/>
-    <field name="awards_in-kind_parties"/>
-    <label string="Value:" name="awards_in-kind_value_benefits"/>
-    <field string="Payments Amount:" name="awards_in-kind_value_benefits"/>
-    <label name="awards_in-kind_payments_amount"/>
-    <field name="awards_in-kind_payments_amount"/>
+    <label string="Num of Parties:" name="awards_in_kind_parties"/>
+    <field name="awards_in_kind_parties"/>
+    <label string="Value:" name="awards_in_kind_value_benefits"/>
+    <field string="Payments Amount:" name="awards_in_kind_value_benefits"/>
+    <label name="awards_in_kind_payments_amount"/>
+    <field name="awards_in_kind_payments_amount"/>
 
-    <separator id="gains_forestry" string="Gains Forestry Explitation" colspan="6"/>
+    <separator id="gains_forestry" string="Gains Forestry Explitation" colspan="7"/>
     <label string="Monetary" id="gains_forestry_monetary"/>
     <label string="Num of Parties:" name="gains_forestry_exploitation_monetary_parties"/>
     <field name="gains_forestry_exploitation_monetary_parties"/>
@@ -75,14 +75,14 @@ contains the full copyright notices and license terms. -->
     <field name="gains_forestry_exploitation_monetary_withholdings_amount"/>
 
     <label string="In-Kind" id="gains_forestry_in_kind"/>
-    <label string="Num of Parties:" name="gains_forestry_exploitation_in-kind_parties"/>
-    <field name="gains_forestry_exploitation_in-kind_parties"/>
-    <label string="Value:" name="gains_forestry_exploitation_in-kind_value_benefits"/>
-    <field name="gains_forestry_exploitation_in-kind_value_benefits"/>
-    <label string="Payments Amount:" name="gains_forestry_exploitation_in-kind_payments_amount"/>
-    <field name="gains_forestry_exploitation_in-kind_payments_amount"/>
+    <label string="Num of Parties:" name="gains_forestry_exploitation_in_kind_parties"/>
+    <field name="gains_forestry_exploitation_in_kind_parties"/>
+    <label string="Value:" name="gains_forestry_exploitation_in_kind_value_benefits"/>
+    <field name="gains_forestry_exploitation_in_kind_value_benefits"/>
+    <label string="Payments Amount:" name="gains_forestry_exploitation_in_kind_payments_amount"/>
+    <field name="gains_forestry_exploitation_in_kind_payments_amount"/>
 
-    <separator id="image_rights" string="Image Rights" colspan="6"/>
+    <separator id="image_rights" string="Image Rights" colspan="7"/>
     <label string="Monetary or In-Kind" id="image_rights_monetary_in_kind"/>
     <label string="Num of Parties:" name="image_rights_parties"/>
     <field name="image_rights_parties"/>
@@ -91,25 +91,25 @@ contains the full copyright notices and license terms. -->
     <label string="Withholding:" name="image_rights_payments_amount"/>
     <field name="image_rights_payments_amount"/>
 
-    <separator id="result" string="Result" colspan="6"/>
-    <label name="withholdings_payments_amount" colspan="5"/>
+    <separator id="result" string="Result" colspan="7"/>
+    <label name="withholdings_payments_amount" colspan="6"/>
     <field name="withholdings_payments_amount"/>
-    <label name="to_deduce" colspan="5"/>
+    <label name="to_deduce" colspan="6"/>
     <field name="to_deduce"/>
-    <label name="result" colspan="5"/>
+    <label name="result" colspan="6"/>
     <field name="result"/>
 
-    <separator id="complementary" string="Complementary" colspan="6"/>
+    <separator id="complementary" string="Complementary" colspan="7"/>
     <label name="complementary_declaration"/>
     <field name="complementary_declaration" colspan="2"/>
     <label name="previous_declaration_receipt"/>
-    <field name="previous_declaration_receipt" colspan="2"/>
+    <field name="previous_declaration_receipt" colspan="3"/>
 
-    <separator id="bank" string="Bank Information" colspan="6"/>
+    <separator id="bank" string="Bank Information" colspan="7"/>
     <label name="bank_account"/>
-    <field name="bank_account" colspan="5"/>
+    <field name="bank_account" colspan="6"/>
 
-    <separator id="111footer" colspan="6"/>
+    <separator id="111footer" colspan="7"/>
     <group id="state" colspan="3" col="6">
         <label name="state"/>
         <field name="state"/>
@@ -119,7 +119,7 @@ contains the full copyright notices and license terms. -->
         <field name="file_"/>
         <field name="filename" invisible="1"/>
     </group>
-    <group id="buttons" colspan="3">
+    <group id="buttons" colspan="4">
         <button name="draft"/>
         <button name="calculate"/>
         <button name="process"/>
