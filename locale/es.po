@@ -2,587 +2,473 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
-#, fuzzy
 msgctxt "field:aeat.111.mapping,aeat111_field:"
 msgid "Field"
 msgstr "Campo"
 
-#, fuzzy
 msgctxt "field:aeat.111.mapping,code:"
 msgid "Tax Code"
-msgstr "Código de impuestos"
+msgstr "Código impuestos"
 
-#, fuzzy
 msgctxt "field:aeat.111.mapping,code_by_companies:"
 msgid "Tax Code"
-msgstr "Código de impuestos"
+msgstr "Código impuestos"
 
-#, fuzzy
 msgctxt "field:aeat.111.mapping,company:"
 msgid "Company"
-msgstr "Compañía"
+msgstr "Empresa"
 
-#, fuzzy
 msgctxt "field:aeat.111.mapping,template:"
 msgid "Template"
 msgstr "Plantilla"
 
-#, fuzzy
 msgctxt "field:aeat.111.mapping-account.tax.code,code:"
 msgid "Tax Code"
-msgstr "Código de impuestos"
+msgstr "Código impuestos"
 
-#, fuzzy
 msgctxt "field:aeat.111.mapping-account.tax.code,mapping:"
 msgid "Mapping"
-msgstr "Cartografía"
+msgstr "Mapeo"
 
-#, fuzzy
 msgctxt "field:aeat.111.mapping-account.tax.code.template,code:"
 msgid "Tax Code Template"
-msgstr "Plantilla de código fiscal"
+msgstr "Plantilla de código impuesto"
 
-#, fuzzy
 msgctxt "field:aeat.111.mapping-account.tax.code.template,mapping:"
 msgid "Mapping"
-msgstr "Cartografía"
+msgstr "Mapeo"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,awards_in_kind_parties:"
 msgid "Awards In-Kind Parties"
-msgstr "Premios Fiestas en Especie"
+msgstr "Premios en especies - Nº perceptores"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,awards_in_kind_payments_amount:"
 msgid "Awards In-Kind Payments Amount"
-msgstr "Monto de los pagos en especie de las concesiones"
+msgstr "Premios en especies - Ingresos a cuenta"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,awards_in_kind_value_benefits:"
 msgid "Awards In-Kind Value Benefits"
-msgstr "Otorga beneficios de valor en especie"
+msgstr "Premios en especies - Percepciones"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,awards_monetary_parties:"
 msgid "Awards Monetary Parties"
-msgstr "Premios Partes Monetarias"
+msgstr "Premios dinerarios - Nº perceptores"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,awards_monetary_payments:"
 msgid "Awards Monetary Payments"
-msgstr "Premios Pagos Monetarios"
+msgstr "Premios dinerarios - Percepciones"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,awards_monetary_withholdings_amount:"
 msgid "Awards Monetary Withholdings Amount"
-msgstr "Monto de Retenciones Monetarias Adjudicadas"
+msgstr "Premios dinerarios - Retenciones"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,bank_account:"
 msgid "Bank Account"
 msgstr "Cuenta bancaria"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,calculation_date:"
 msgid "Calculation Date"
-msgstr "Fecha de cálculo"
+msgstr "Fecha cálculo"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,company:"
 msgid "Company"
-msgstr "Compañía"
+msgstr "Empresa"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,company_name:"
 msgid "Company Name"
-msgstr "nombre de empresa"
+msgstr "Nombre"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,company_party:"
 msgid "Company Party"
-msgstr "Fiesta de empresa"
+msgstr "Tercero de la empresa"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,company_surname:"
 msgid "Company Surname"
-msgstr "Apellido de la empresa"
+msgstr "Razón social/Apellidos"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,company_vat:"
 msgid "VAT"
-msgstr "IVA"
+msgstr "CIF/NIF"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,complementary_declaration:"
 msgid "Complementary Declaration"
 msgstr "Declaración Complementaria"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,currency:"
 msgid "Currency"
-msgstr "Divisa"
+msgstr "Moneda"
 
-#, fuzzy
 msgctxt ""
 "field:aeat.111.report,economic_activities_productivity_in_kind_parties:"
 msgid "Economic Activities Productivity In-Kind Parties"
-msgstr "Actividades Económicas Productividad Partes en Especie"
+msgstr "Rendim. actividades económicas en especies - Nº perceptores"
 
-#, fuzzy
 msgctxt ""
 "field:aeat.111.report,economic_activities_productivity_in_kind_payments_amount:"
 msgid "Economic Activities Productivity In-Kind Payments Amount"
-msgstr "Actividades Económicas Productividad Pagos en Especie Monto"
+msgstr "Rendim. actividades económicas en especies - Ingresos"
 
-#, fuzzy
 msgctxt ""
 "field:aeat.111.report,economic_activities_productivity_in_kind_value_benefits:"
 msgid "Economic Activities Productivity In-Kind Value Benefits"
-msgstr "Actividades Económicas Productividad Valor en Especie Beneficios"
+msgstr "Rendim. actividades económicas en especies - Percepciones"
 
-#, fuzzy
 msgctxt ""
 "field:aeat.111.report,economic_activities_productivity_monetary_parties:"
 msgid "Economic Activities Productivity Monetary Parties"
-msgstr "Actividades Económicas Productividad Monetaria Partidos"
+msgstr "Rendim. actividades económicas dinerarios - Nº perceptores"
 
-#, fuzzy
 msgctxt ""
 "field:aeat.111.report,economic_activities_productivity_monetary_payments:"
-msgid "Economic Activities Productivity Monetary"
-msgstr "Actividades Económicas Productividad Monetaria"
+msgid "Economic Activities Productivity Monetary Payments"
+msgstr "Rendim. actividades económicas dinerarios - Percepciones"
 
-#, fuzzy
 msgctxt ""
 "field:aeat.111.report,economic_activities_productivity_monetary_withholdings_amount:"
 msgid "Economic Activities Productivity Monetary Withholdings Amount"
-msgstr "Actividades Económicas Productividad Retenciones Monetarias Monto"
+msgstr "Rendim. actividades económicas dinerarios - Retenciones"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,file_:"
 msgid "File"
 msgstr "Archivo"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,filename:"
 msgid "File Name"
 msgstr "Nombre del archivo"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,gains_forestry_exploitation_in_kind_parties:"
 msgid "Gains Forestry Exploitation In-Kind Parties"
-msgstr "Gana Explotación Forestal Partes en Especie"
+msgstr "Ganancias Forestales en especies - Nº perceptores"
 
-#, fuzzy
 msgctxt ""
 "field:aeat.111.report,gains_forestry_exploitation_in_kind_payments_amount:"
 msgid "Gains Forestry Exploitation In-Kind Payments Amount"
-msgstr "Ganancias Explotación Forestal Pagos en Especie Monto"
+msgstr "Ganancias Forestales en especies - Ingresos"
 
-#, fuzzy
 msgctxt ""
 "field:aeat.111.report,gains_forestry_exploitation_in_kind_value_benefits:"
 msgid "Gains Forestry Exploitation In-Kind Value Benefits"
-msgstr "Obtiene beneficios de valor en especie de la explotación forestal"
+msgstr "Ganancias Forestales en especies - Percepciones"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,gains_forestry_exploitation_monetary_parties:"
 msgid "Gains Forestry Exploitation Monetary Parties"
-msgstr "Gana la explotación forestal los partidos monetarios"
+msgstr "Ganancias Forestales dinerarias - Nº perceptores"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,gains_forestry_exploitation_monetary_payments:"
 msgid "Gains Forestry Exploitation Monetary Payments"
-msgstr "Ganancias Explotación Forestal Pagos Monetarios"
+msgstr "Ganancias Forestales dinerarias - Percepciones"
 
-#, fuzzy
 msgctxt ""
 "field:aeat.111.report,gains_forestry_exploitation_monetary_withholdings_amount:"
 msgid "Gains Forestry Exploitation Monetary Withholdings Amount"
-msgstr "Ganancias Explotación Forestal Retenciones Monetarias Monto"
+msgstr "Ganancias Forestales dinerarias - Retenciones"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,image_rights_parties:"
 msgid "Image Rights Parties"
-msgstr "Partes de derechos de imagen"
+msgstr "Dchos. imagen - Nº perceptores"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,image_rights_payments_amount:"
 msgid "Image Rights Payments Amount"
-msgstr "Monto de los pagos por derechos de imagen"
+msgstr "Dchos. imagen - Ingresos"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,image_rights_service_payments:"
 msgid "Image Rights Service Payments"
-msgstr "Pagos del servicio de derechos de imagen"
+msgstr "Dchos. imagen - Percepciones"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,period:"
 msgid "Period"
 msgstr "Período"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,previous_declaration_receipt:"
 msgid "Previous Declaration Receipt"
-msgstr "Recibo de Declaración Anterior"
+msgstr "Justificante declaración anterior"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,result:"
 msgid "Result"
 msgstr "Resultado"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,state:"
 msgid "State"
 msgstr "Estado"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,to_deduce:"
 msgid "To Deduce"
-msgstr "Deducir"
+msgstr "A Deducir"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,type:"
 msgid "Declaration Type"
 msgstr "Tipo de declaración"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,withholdings_payments_amount:"
 msgid "Withholding and Payments"
-msgstr "Retenciones y Pagos"
+msgstr "Retenciones e ingresos a cuenta"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,work_productivity_in_kind_parties:"
 msgid "Work Productivity In-Kind Parties"
-msgstr "Fiestas en especie de productividad laboral"
+msgstr "Rendim. del trabajo en especies - Nº perceptores"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,work_productivity_in_kind_payments_amount:"
 msgid "Work Productivity In-Kind Payments Amount"
-msgstr "Trabajo Productividad Pagos en especie Monto"
+msgstr "Rendim. del trabajo en especies - Ingresos"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,work_productivity_in_kind_value_benefits:"
 msgid "Work Productivity In-Kind Value Benefits"
-msgstr "Beneficios de valor en especie de productividad laboral"
+msgstr "Rendim. del trabajo en especies - Percepciones"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,work_productivity_monetary_parties:"
 msgid "Work Productivity Monetary Parties"
-msgstr "Partidos monetarios de productividad laboral"
+msgstr "Rendim. del trabajo dinerarios - Nº perceptores"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,work_productivity_monetary_payments:"
 msgid "Work Productivity Monetary Payments"
-msgstr "Pagos monetarios por productividad laboral"
+msgstr "Rendim. del trabajo dinerarios - Percepciones"
 
-#, fuzzy
 msgctxt ""
 "field:aeat.111.report,work_productivity_monetary_withholdings_amount:"
 msgid "Work Productivty Monetary Withholdings Amount"
-msgstr "Trabajo Productividad Retenciones Monetarias Monto"
+msgstr "Rendim. del trabajo dinerarios - Retenciones"
 
-#, fuzzy
 msgctxt "field:aeat.111.report,year:"
 msgid "Year"
 msgstr "Año"
 
-#, fuzzy
 msgctxt "field:aeat.111.template.mapping,aeat111_field:"
 msgid "Field"
 msgstr "Campo"
 
-#, fuzzy
 msgctxt "field:aeat.111.template.mapping,code:"
 msgid "Tax Code Template"
-msgstr "Plantilla de código fiscal"
+msgstr "Plantilla de código impuesto"
 
-#, fuzzy
 msgctxt "help:aeat.111.report,to_deduce:"
 msgid ""
-"Exclusively in case of complementary self-assessment.Results to be entered "
+"Exclusively in case of complementary self-assessment. Results to be entered "
 "from previous self-assessments for the same concept, year and period"
 msgstr ""
 "Exclusivamente en caso de autoliquidación complementaria. Se introducirán "
 "resultados de autoliquidaciones anteriores por el mismo concepto, año y "
 "período."
 
-#, fuzzy
 msgctxt "model:aeat.111.mapping,name:"
 msgid "AEAT 111 TaxCode Mapping"
-msgstr "Mapeo del Código Tributario AEAT 111"
+msgstr "Mapeo del Código de impuestos AEAT 111"
 
-#, fuzzy
 msgctxt "model:aeat.111.mapping-account.tax.code,name:"
 msgid "AEAT 111 TaxCode Mapping Codes Relation"
-msgstr "AEAT 111 Relación de Códigos de Mapeo TaxCode"
+msgstr "Relación Mapeo AEAT 111 Codigos de impuestos"
 
-#, fuzzy
 msgctxt "model:aeat.111.mapping-account.tax.code.template,name:"
 msgid "AEAT 111 TaxCode Mapping Codes Relation"
-msgstr "AEAT 111 Relación de Códigos de Mapeo TaxCode"
+msgstr "Relación Mapeo AEAT 111 Codigos de impuestos"
 
-#, fuzzy
 msgctxt "model:aeat.111.report,name:"
 msgid "AEAT 111 Report"
 msgstr "Informe AEAT 111"
 
-#, fuzzy
 msgctxt "model:aeat.111.template.mapping,name:"
 msgid "AEAT 111 TemplateTaxCode Mapping"
-msgstr "Mapeo de códigos de impuestos de plantilla AEAT 111"
+msgstr "Mapeo plantillas codigos de impuestos AEAT 111"
 
-#, fuzzy
 msgctxt "model:ir.action,name:act_aeat_111_mapping"
 msgid "AEAT 111 mapping"
 msgstr "Mapeo AEAT 111"
 
-#, fuzzy
 msgctxt "model:ir.action,name:act_aeat_111_report"
 msgid "AEAT 111 Report"
 msgstr "Informe AEAT 111"
 
-#, fuzzy
 msgctxt "model:ir.message,text:msg_invalid_currency"
 msgid "Currency in AEAT 111 report \"%(name)s\" must be Euro."
 msgstr "La moneda del informe AEAT 111 \"%(name)s\" debe ser el euro."
 
-#, fuzzy
 msgctxt "model:ir.model.button,string:aeat_111_report_calculate_button"
 msgid "Calculate"
-msgstr "Calcular"
+msgstr "Calcula"
 
-#, fuzzy
 msgctxt "model:ir.model.button,string:aeat_111_report_cancel_button"
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Cancela"
 
-#, fuzzy
 msgctxt "model:ir.model.button,string:aeat_111_report_draft_button"
 msgid "Draft"
 msgstr "Borrador"
 
-#, fuzzy
 msgctxt "model:ir.model.button,string:aeat_111_report_process_button"
 msgid "Process"
 msgstr "Proceso"
 
-#, fuzzy
 msgctxt "model:ir.rule.group,name:rule_group_aeat111"
 msgid "User in company"
-msgstr "Usuario en empresa"
+msgstr "Usuario en la empresa"
 
-#, fuzzy
 msgctxt "model:ir.rule.group,name:rule_group_aeat111_mapping"
 msgid "User in company"
-msgstr "Usuario en empresa"
+msgstr "Usuario en la empresa"
 
-#, fuzzy
 msgctxt "model:ir.ui.menu,name:menu_aeat_111_mapping"
 msgid "AEAT 111 Mapping"
 msgstr "Mapeo AEAT 111"
 
-#, fuzzy
 msgctxt "model:ir.ui.menu,name:menu_aeat_111_report"
 msgid "AEAT 111 Report"
-msgstr "Informe AEAT 111"
+msgstr "Informes AEAT 111"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,period:"
 msgid "April"
 msgstr "Abril"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,period:"
 msgid "August"
 msgstr "Agosto"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,period:"
 msgid "December"
 msgstr "Diciembre"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,period:"
 msgid "February"
 msgstr "Febrero"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,period:"
 msgid "First quarter"
-msgstr "Primer cuarto"
+msgstr "Primer trimestre"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,period:"
 msgid "Fourth quarter"
 msgstr "Cuarto trimestre"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,period:"
 msgid "January"
 msgstr "Enero"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,period:"
 msgid "July"
 msgstr "Julio"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,period:"
 msgid "June"
 msgstr "Junio"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,period:"
 msgid "March"
 msgstr "Marzo"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,period:"
 msgid "May"
-msgstr "Puede"
+msgstr "Mayo"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,period:"
 msgid "November"
 msgstr "Noviembre"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,period:"
 msgid "October"
 msgstr "Octubre"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,period:"
 msgid "Second quarter"
-msgstr "Segundo cuarto"
+msgstr "Segundo trimestre"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,period:"
 msgid "September"
 msgstr "Septiembre"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,period:"
 msgid "Third quarter"
-msgstr "Tercer cuarto"
+msgstr "Tercer trimestre"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,state:"
 msgid "Calculated"
 msgstr "Calculado"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,state:"
 msgid "Cancelled"
 msgstr "Cancelado"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,state:"
 msgid "Done"
 msgstr "Hecho"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,state:"
 msgid "Draft"
 msgstr "Borrador"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,type:"
 msgid "Direct incomes in account"
-msgstr "Ingresos directos en cuenta"
+msgstr "Domiciliación del importe en CC"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,type:"
 msgid "Income"
 msgstr "Ingreso"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,type:"
 msgid "Income on CCT"
 msgstr "Ingresos en CCT"
 
-#, fuzzy
 msgctxt "selection:aeat.111.report,type:"
 msgid "Negative"
 msgstr "Negativo"
 
-#, fuzzy
 msgctxt "view:aeat.111.report:"
 msgid "Awards"
 msgstr "Premios"
 
-#, fuzzy
 msgctxt "view:aeat.111.report:"
 msgid "Bank Information"
 msgstr "Información bancaria"
 
-#, fuzzy
 msgctxt "view:aeat.111.report:"
 msgid "Complementary"
 msgstr "Complementario"
 
-#, fuzzy
 msgctxt "view:aeat.111.report:"
 msgid "Economic Activity"
-msgstr "Actividad económica"
+msgstr "Rendim. Actividad económica"
 
-#, fuzzy
 msgctxt "view:aeat.111.report:"
 msgid "Gains Forestry Explitation"
-msgstr "Gana explotación forestal"
+msgstr "Ganancia explotación forestal"
 
-#, fuzzy
 msgctxt "view:aeat.111.report:"
 msgid "Image Rights"
 msgstr "Derechos de imagen"
 
-#, fuzzy
 msgctxt "view:aeat.111.report:"
 msgid "In-Kind"
-msgstr "En especie"
+msgstr "En especies"
 
-#, fuzzy
 msgctxt "view:aeat.111.report:"
 msgid "Monetary"
-msgstr "Monetario"
+msgstr "Dinerarios"
 
-#, fuzzy
 msgctxt "view:aeat.111.report:"
 msgid "Monetary or In-Kind"
-msgstr "Monetario o en especie"
+msgstr "Dinerarios o en especies"
 
-#, fuzzy
 msgctxt "view:aeat.111.report:"
 msgid "Num of Parties:"
-msgstr "Número de Partes:"
+msgstr "Nº terceros:"
 
-#, fuzzy
 msgctxt "view:aeat.111.report:"
 msgid "Payments Amount:"
-msgstr "Monto de los pagos:"
+msgstr "Importe ingresos:"
 
-#, fuzzy
 msgctxt "view:aeat.111.report:"
 msgid "Payments:"
-msgstr "Pagos:"
+msgstr "Importe Percepciones:"
 
-#, fuzzy
 msgctxt "view:aeat.111.report:"
 msgid "Result"
 msgstr "Resultado"
 
-#, fuzzy
 msgctxt "view:aeat.111.report:"
 msgid "Value:"
-msgstr "Valor:"
+msgstr "Valor percepciones:"
 
-#, fuzzy
 msgctxt "view:aeat.111.report:"
 msgid "Withholding:"
-msgstr "Retención:"
+msgstr "Importe Retenciones:"
 
-#, fuzzy
 msgctxt "view:aeat.111.report:"
 msgid "Work Productivity"
-msgstr "Productividad laboral"
+msgstr "Rendim. del trabajo"
