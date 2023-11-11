@@ -289,7 +289,7 @@ class Report(Workflow, ModelSQL, ModelView):
             ('economic_activities_productivity_monetary_parties', '<=', 99999999),
             ])
     economic_activities_productivity_monetary_payments = fields.Numeric(
-        "Economic Activities Productivity Monetary",
+        "Economic Activities Productivity Monetary Payments",
         digits=(15, 2))
     economic_activities_productivity_monetary_withholdings_amount = (
         fields.Numeric(
@@ -369,7 +369,7 @@ class Report(Workflow, ModelSQL, ModelView):
             "Withholding and Payments", digits=(15, 2)),
         'get_withholdings_payments_amount')
     to_deduce = fields.Numeric("To Deduce", digits=(15, 2),
-        help="Exclusively in case of complementary self-assessment."
+        help="Exclusively in case of complementary self-assessment. "
         "Results to be entered from previous self-assessments for the same "
         "concept, year and period")
     result = fields.Function(fields.Numeric("Result", digits=(15, 2)),
