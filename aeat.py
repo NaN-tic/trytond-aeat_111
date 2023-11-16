@@ -382,7 +382,7 @@ class Report(Workflow, ModelSQL, ModelView):
             }, depends=['complementary_declaration'])
     company_party = fields.Function(fields.Many2One('party.party',
             'Company Party', context={
-                'company': Eval('company'),
+                'company': Eval('company', -1),
             }, depends=['company']), 'on_change_with_company_party')
     bank_account = fields.Many2One('bank.account', "Bank Account",
         domain=[
