@@ -8,9 +8,11 @@ from . import aeat
 def register():
     Pool.register(
         aeat.Report,
-        aeat.TemplateTaxCodeMapping,
+        aeat.TemplateMapping,
+        aeat.TemplateAccountRelation,
         aeat.TemplateTaxCodeRelation,
-        aeat.TaxCodeMapping,
+        aeat.Mapping,
+        aeat.AccountRelation,
         aeat.TaxCodeRelation,
         module='aeat_111', type_='model')
     Pool.register(

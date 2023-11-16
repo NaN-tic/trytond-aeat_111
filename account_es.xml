@@ -3,6 +3,22 @@
 contains the full copyright notices and license terms. -->
 <tryton>
     <data depends="account_es" grouped="1">
+        <!-- [02] -  640.0 -->
+        <record model="aeat.111.mapping-account.account.template" id="aeat_111_mapping_code_02_val1">
+            <field name="mapping" ref="aeat_111_mapping_code_02"/>
+            <field name="account" ref="account_es.pgc_640_child"/>
+        </record>
+        <!-- [02] - 641.0 -->
+        <record model="aeat.111.mapping-account.account.template" id="aeat_111_mapping_code_02_val2">
+            <field name="mapping" ref="aeat_111_mapping_code_02"/>
+            <field name="account" ref="account_es.pgc_641_child"/>
+        </record>
+        <!-- [03] - 4751.0 -->
+        <record model="aeat.111.mapping-account.account.template" id="aeat_111_mapping_code_03_val1">
+            <field name="mapping" ref="aeat_111_mapping_code_03"/>
+            <field name="account" ref="account_es.pgc_4751_child"/>
+        </record>
+
         <!-- [08] - IRPF Retenciones Modelo 111 (Base Deducible) -->
         <record model="aeat.111.mapping-account.tax.code.template" id="aeat_111_mapping_code_08_val1">
             <field name="mapping" ref="aeat_111_mapping_code_08"/>
