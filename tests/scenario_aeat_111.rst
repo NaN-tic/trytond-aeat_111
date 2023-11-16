@@ -145,19 +145,18 @@ Create invoices::
     >>> invoice = Invoice()
     >>> invoice.type = 'in'
     >>> invoice.party = supplier01
-    >>> invoice.invoice_date = today
+    >>> invoice.invoice_date = period.start_date
     >>> line = invoice.lines.new()
     >>> line.product = product
     >>> line.quantity = 1
     >>> line.unit_price = Decimal('700')
     >>> invoice.click('post')
     >>> invoice.total_amount
-    Decimal('847.00')
-    >>> Invoice = Model.get('account.invoice')
+    Decimal('798.00')
     >>> invoice = Invoice()
     >>> invoice.type = 'in'
     >>> invoice.party = supplier02
-    >>> invoice.invoice_date = today
+    >>> invoice.invoice_date = period.start_date
     >>> line = invoice.lines.new()
     >>> line.product = product
     >>> line.quantity = 1
@@ -166,19 +165,74 @@ Create invoices::
     >>> invoice.total_amount
     Decimal('430.00')
 
+Create payroll move::
+
+    >>> Journal = Model.get('account.journal')
+    >>> Move = Model.get('account.move')
+    >>> account_salaries, = Account.find([
+    ...         ('code', '=', '640'),
+    ...         ('type', '!=', None),
+    ...         ('type.expense', '=', True),
+    ...         ('type.revenue', '=', False),
+    ...         ('type.debt', '=', False),
+    ...         ('company', '=', company.id),
+    ...         ], limit=1)
+    >>> account_taxation, = Account.find([
+    ...         ('code', '=', '4751'),
+    ...         ('type', '!=', None),
+    ...         ('type.expense', '=', False),
+    ...         ('type.revenue', '=', False),
+    ...         ('type.debt', '=', False),
+    ...         ('company', '=', company.id),
+    ...         ], limit=1)
+    >>> account_remuneration, = Account.find([
+    ...         ('code', '=', '476'),
+    ...         ('type', '!=', None),
+    ...         ('type.expense', '=', False),
+    ...         ('type.revenue', '=', False),
+    ...         ('type.debt', '=', False),
+    ...         ('company', '=', company.id),
+    ...         ], limit=1)
+    >>> journal, = Journal.find([
+    ...         ('code', '=', 'MISC'),
+    ...         ])
+    >>> move = Move()
+    >>> move.period = period
+    >>> move.journal = journal
+    >>> move.date = period.start_date
+    >>> line = move.lines.new()
+    >>> line.account = account_salaries
+    >>> line.debit = Decimal(2200)
+    >>> line = move.lines.new()
+    >>> line.account = account_taxation
+    >>> line.credit = Decimal(1200)
+    >>> line = move.lines.new()
+    >>> line.account = account_remuneration
+    >>> line.credit = Decimal(1000)
+    >>> move.save()
+    >>> move.click('post')
+
 Generate AEAT 111 Report::
 
     >>> Report = Model.get('aeat.111.report')
     >>> report = Report()
-    >>> report.year = today.year
+    >>> report.year = period.start_date.year
     >>> report.type = 'I'
-    >>> report.period = "%02d" % (today.month)
+    >>> report.period = "%02d" % (period.start_date.month)
     >>> report.company_vat = 'ESB01000009'
+    >>> report.work_productivity_monetary_parties = 4
+    >>> report.work_productivity_in_kind_parties = 0
+    >>> report.economic_activities_productivity_in_kind_parties = 0
+    >>> report.awards_monetary_parties = 0
+    >>> report.awards_in_kind_parties = 0
+    >>> report.gains_forestry_exploitation_monetary_parties = 0
+    >>> report.gains_forestry_exploitation_in_kind_parties = 0
+    >>> report.image_rights_parties = 0
     >>> report.click('calculate')
     >>> report.economic_activities_productivity_monetary_parties
     2
     >>> report.withholdings_payments_amount
-    Decimal('224.00')
+    Decimal('1424.00')
 
 Test report is generated correctly::
 

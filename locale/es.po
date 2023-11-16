@@ -2,6 +2,14 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
+msgctxt "field:aeat.111.mapping,account:"
+msgid "Account"
+msgstr "Cuenta"
+
+msgctxt "field:aeat.111.mapping,account_by_companies:"
+msgid "Account"
+msgstr "Cuenta"
+
 msgctxt "field:aeat.111.mapping,aeat111_field:"
 msgid "Field"
 msgstr "Campo"
@@ -21,6 +29,26 @@ msgstr "Empresa"
 msgctxt "field:aeat.111.mapping,template:"
 msgid "Template"
 msgstr "Plantilla"
+
+msgctxt "field:aeat.111.mapping,type_:"
+msgid "Type"
+msgstr "Tipo"
+
+msgctxt "field:aeat.111.mapping-account.account,account:"
+msgid "Account"
+msgstr "Cuenta"
+
+msgctxt "field:aeat.111.mapping-account.account,mapping:"
+msgid "Mapping"
+msgstr "Mapeo"
+
+msgctxt "field:aeat.111.mapping-account.account.template,account:"
+msgid "Account Template"
+msgstr "Plantilla de cuenta"
+
+msgctxt "field:aeat.111.mapping-account.account.template,mapping:"
+msgid "Mapping"
+msgstr "Mapeo"
 
 msgctxt "field:aeat.111.mapping-account.tax.code,code:"
 msgid "Tax Code"
@@ -232,6 +260,10 @@ msgctxt "field:aeat.111.report,year:"
 msgid "Year"
 msgstr "Año"
 
+msgctxt "field:aeat.111.template.mapping,account:"
+msgid "Account Template"
+msgstr "Plantilla de cuenta"
+
 msgctxt "field:aeat.111.template.mapping,aeat111_field:"
 msgid "Field"
 msgstr "Campo"
@@ -239,6 +271,10 @@ msgstr "Campo"
 msgctxt "field:aeat.111.template.mapping,code:"
 msgid "Tax Code Template"
 msgstr "Plantilla de código impuesto"
+
+msgctxt "field:aeat.111.template.mapping,type_:"
+msgid "Type"
+msgstr "Tipo"
 
 msgctxt "help:aeat.111.report,to_deduce:"
 msgid ""
@@ -250,8 +286,16 @@ msgstr ""
 "período."
 
 msgctxt "model:aeat.111.mapping,name:"
-msgid "AEAT 111 TaxCode Mapping"
-msgstr "Mapeo del Código de impuestos AEAT 111"
+msgid "AEAT 111 Mapping"
+msgstr "Mapeo AEAT 111"
+
+msgctxt "model:aeat.111.mapping-account.account,name:"
+msgid "AEAT 111 Account Mapping Codes Relation"
+msgstr "Relación Códigos de Mapeo de Cuentas AEAT 111"
+
+msgctxt "model:aeat.111.mapping-account.account.template,name:"
+msgid "AEAT 111 Account Mapping Codes Relation"
+msgstr "Relación Códigos de Mapeo de Cuentas AEAT 111"
 
 msgctxt "model:aeat.111.mapping-account.tax.code,name:"
 msgid "AEAT 111 TaxCode Mapping Codes Relation"
@@ -266,8 +310,8 @@ msgid "AEAT 111 Report"
 msgstr "Informe AEAT 111"
 
 msgctxt "model:aeat.111.template.mapping,name:"
-msgid "AEAT 111 TemplateTaxCode Mapping"
-msgstr "Mapeo plantillas codigos de impuestos AEAT 111"
+msgid "AEAT 111 Template Mapping"
+msgstr "Mapeo de Plantillas AEAT 111"
 
 msgctxt "model:ir.action,name:act_aeat_111_mapping"
 msgid "AEAT 111 mapping"
@@ -280,6 +324,14 @@ msgstr "Informe AEAT 111"
 msgctxt "model:ir.message,text:msg_invalid_currency"
 msgid "Currency in AEAT 111 report \"%(name)s\" must be Euro."
 msgstr "La moneda del informe AEAT 111 \"%(name)s\" debe ser el euro."
+
+msgctxt "model:ir.message,text:msg_invalid_work_productivity_monetary_parties"
+msgid ""
+"The Work Productivity Monetary Parties field has an invalid value. Must be "
+"the numebr of employees."
+msgstr ""
+"El campo terceros de productividad laboral tiene un valor no válido. Debe "
+"ser el número de empleados."
 
 msgctxt "model:ir.model.button,string:aeat_111_report_calculate_button"
 msgid "Calculate"
@@ -312,6 +364,14 @@ msgstr "Mapeo AEAT 111"
 msgctxt "model:ir.ui.menu,name:menu_aeat_111_report"
 msgid "AEAT 111 Report"
 msgstr "Informes AEAT 111"
+
+msgctxt "selection:aeat.111.mapping,type_:"
+msgid "Account"
+msgstr "Cuenta"
+
+msgctxt "selection:aeat.111.mapping,type_:"
+msgid "Code"
+msgstr "Código"
 
 msgctxt "selection:aeat.111.report,period:"
 msgid "April"
@@ -408,6 +468,14 @@ msgstr "Ingresos en CCT"
 msgctxt "selection:aeat.111.report,type:"
 msgid "Negative"
 msgstr "Negativo"
+
+msgctxt "selection:aeat.111.template.mapping,type_:"
+msgid "Account"
+msgstr "Cuenta"
+
+msgctxt "selection:aeat.111.template.mapping,type_:"
+msgid "Code"
+msgstr "Código"
 
 msgctxt "view:aeat.111.report:"
 msgid "Awards"

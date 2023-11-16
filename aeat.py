@@ -3,13 +3,12 @@ from decimal import Decimal
 import datetime
 import calendar
 import unicodedata
-import sys
 
 from retrofix import aeat111
 from retrofix.record import Record, write as retrofix_write
 from trytond.model import Workflow, ModelSQL, ModelView, fields, Unique
 from trytond.pool import Pool, PoolMeta
-from trytond.pyson import Eval, Bool
+from trytond.pyson import Eval, Bool, If
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
 from trytond.transaction import Transaction
@@ -25,8 +24,18 @@ def remove_accents(text):
         if (unicodedata.category(c) != 'Mn'
                 or c in ('\\u0327', '\\u0303'))  # Avoids normalize ç and ñ
         )
-    # It converts nfd to nfc to allow unicode.decode()
-    #return unicodedata.normalize('NFC', unicode_string_nfd)
+
+
+class TemplateAccountRelation(ModelSQL):
+    '''
+    AEAT 111 Account Mapping Codes Relation
+    '''
+    __name__ = 'aeat.111.mapping-account.account.template'
+
+    mapping = fields.Many2One('aeat.111.template.mapping', 'Mapping',
+        required=True)
+    account = fields.Many2One('account.account.template', 'Account Template',
+        required=True)
 
 
 class TemplateTaxCodeRelation(ModelSQL):
@@ -41,20 +50,32 @@ class TemplateTaxCodeRelation(ModelSQL):
         required=True)
 
 
-class TemplateTaxCodeMapping(ModelSQL):
+class TemplateMapping(ModelSQL):
     '''
-    AEAT 111 TemplateTaxCode Mapping
+    AEAT 111 Template Mapping
     '''
     __name__ = 'aeat.111.template.mapping'
 
     aeat111_field = fields.Many2One('ir.model.field', 'Field',
         domain=[('module', '=', 'aeat_111')], required=True)
+    type_ = fields.Selection([
+            ('code', 'Code'),
+            ('account', 'Account'),
+            ], 'Type', required=True)
+    account = fields.Many2Many('aeat.111.mapping-account.account.template',
+        'mapping', 'account', 'Account Template',
+        states={
+            'invisible': Eval('type_') != 'account',
+            })
     code = fields.Many2Many('aeat.111.mapping-account.tax.code.template',
-        'mapping', 'code', 'Tax Code Template')
+        'mapping', 'code', 'Tax Code Template',
+        states={
+            'invisible': Eval('type_') != 'code',
+            })
 
     @classmethod
     def __setup__(cls):
-        super(TemplateTaxCodeMapping, cls).__setup__()
+        super().__setup__()
         t = cls.__table__()
         cls._sql_constraints += [
             ('aeat111_field_uniq', Unique(t, t.aeat111_field),
@@ -63,34 +84,50 @@ class TemplateTaxCodeMapping(ModelSQL):
 
     def _get_mapping_value(self, mapping=None):
         pool = Pool()
+        Account = pool.get('account.account')
         TaxCode = pool.get('account.tax.code')
 
         res = {}
-        if not mapping or mapping.aeat111_field != self.aeat111_field:
+        if mapping is None or mapping.type_ != self.type_:
+            res['type_'] = self.type_
+        if mapping is None or mapping.aeat111_field != self.aeat111_field:
             res['aeat111_field'] = self.aeat111_field.id
+        res['account'] = []
         res['code'] = []
-        old_ids = set()
-        new_ids = set()
+        old_ids = {
+            'account': set(),
+            'code': set(),
+                }
+        new_ids = {
+            'account': set(),
+            'code': set(),
+                }
+        if mapping and len(mapping.account) > 0:
+            old_ids['account'] = set([a.id for a in mapping.account])
         if mapping and len(mapping.code) > 0:
-            old_ids = set([c.id for c in mapping.code])
+            old_ids['code'] = set([c.id for c in mapping.code])
+        if len(self.account) > 0:
+            new_ids['account']= set([a.id for a in Account.search([
+                            ('template', 'in', [a.id for a in self.account])
+                            ])])
         if len(self.code) > 0:
-            new_ids = set([c.id for c in TaxCode.search([
+            new_ids['code'] = set([c.id for c in TaxCode.search([
                             ('template', 'in', [c.id for c in self.code])
                             ])])
         if not mapping or mapping.template != self:
             res['template'] = self.id
-        if old_ids or new_ids:
-            key = 'code'
-            res[key] = []
-            to_remove = old_ids - new_ids
-            if to_remove:
-                res[key].append(['remove', list(to_remove)])
-            to_add = new_ids - old_ids
-            if to_add:
-                res[key].append(['add', list(to_add)])
-            if not res[key]:
-                del res[key]
-        if not mapping and not res['code']:
+        for key in {'account', 'code'}:
+            if old_ids[key] or new_ids[key]:
+                res[key] = []
+                to_remove = old_ids[key] - new_ids[key]
+                if to_remove:
+                    res[key].append(['remove', list(to_remove)])
+                to_add = new_ids[key] - old_ids[key]
+                if to_add:
+                    res[key].append(['add', list(to_add)])
+                if not res[key]:
+                    del res[key]
+        if not mapping and not res['account'] and not res['code']:
             return  # There is nothing to create as there is no mapping
         return res
 
@@ -103,7 +140,7 @@ class UpdateChart(metaclass=PoolMeta):
         MappingTemplate = pool.get('aeat.111.template.mapping')
         Mapping = pool.get('aeat.111.mapping')
 
-        ret = super(UpdateChart, self).transition_update()
+        ret = super().transition_update()
 
         # Update current values
         ids = []
@@ -141,7 +178,7 @@ class CreateChart(metaclass=PoolMeta):
 
         company = self.account.company.id
 
-        ret = super(CreateChart, self).transition_create_account()
+        ret = super().transition_create_account()
         to_create = []
         for template in MappingTemplate.search([]):
             vals = template._get_mapping_value()
@@ -151,6 +188,16 @@ class CreateChart(metaclass=PoolMeta):
 
         Mapping.create(to_create)
         return ret
+
+
+class AccountRelation(ModelSQL):
+    '''
+    AEAT 111 Account Mapping Codes Relation
+    '''
+    __name__ = 'aeat.111.mapping-account.account'
+
+    mapping = fields.Many2One('aeat.111.mapping', 'Mapping', required=True)
+    account = fields.Many2One('account.account', 'Account', required=True)
 
 
 class TaxCodeRelation(ModelSQL):
@@ -163,9 +210,9 @@ class TaxCodeRelation(ModelSQL):
     code = fields.Many2One('account.tax.code', 'Tax Code', required=True)
 
 
-class TaxCodeMapping(ModelSQL, ModelView):
+class Mapping(ModelSQL, ModelView):
     '''
-    AEAT 111 TaxCode Mapping
+    AEAT 111 Mapping
     '''
     __name__ = 'aeat.111.mapping'
 
@@ -173,16 +220,41 @@ class TaxCodeMapping(ModelSQL, ModelView):
         ondelete="RESTRICT")
     aeat111_field = fields.Many2One('ir.model.field', 'Field',
         domain=[('module', '=', 'aeat_111')], required=True)
+    type_ = fields.Selection([
+            ('code', 'Code'),
+            ('account', 'Account')
+            ], 'Type', required=True)
+    account = fields.Many2Many('aeat.111.mapping-account.account', 'mapping',
+        'account', 'Account',
+        states={
+            'required': Eval('type_') == 'account',
+            'invisible': Eval('type_') != 'account',
+            }, depends=['type_'])
+    account_by_companies = fields.Function(
+        fields.Many2Many('aeat.111.mapping-account.account', 'mapping',
+        'account', 'Account',
+        states={
+            'required': Eval('type_') == 'account',
+            'invisible': Eval('type_') != 'account',
+            }, depends=['type_']), 'get_account_by_companies')
     code = fields.Many2Many('aeat.111.mapping-account.tax.code', 'mapping',
-        'code', 'Tax Code')
+        'code', 'Tax Code',
+        states={
+            'required': Eval('type_') == 'code',
+            'invisible': Eval('type_') != 'code',
+            }, depends=['type_'])
     code_by_companies = fields.Function(
         fields.Many2Many('aeat.111.mapping-account.tax.code', 'mapping',
-        'code', 'Tax Code'), 'get_code_by_companies')
+        'code', 'Tax Code',
+        states={
+            'required': Eval('type_') == 'code',
+            'invisible': Eval('type_') != 'code',
+            }, depends=['type_']), 'get_code_by_companies')
     template = fields.Many2One('aeat.111.template.mapping', 'Template')
 
     @classmethod
     def __setup__(cls):
-        super(TaxCodeMapping, cls).__setup__()
+        super().__setup__()
         t = cls.__table__()
         cls._sql_constraints += [
             ('aeat111_field_uniq', Unique(t, t.company, t.aeat111_field),
@@ -203,6 +275,18 @@ class TaxCodeMapping(ModelSQL, ModelView):
                 if not code.company or code.company.id == user_company:
                     code_ids.append(code.id)
             res[record.id] = code_ids
+        return res
+
+    @classmethod
+    def get_account_by_companies(cls, records, name):
+        user_company = Transaction().context.get('company')
+        res = dict((x.id, None) for x in records)
+        for record in records:
+            account_ids = []
+            for account in record.account:
+                if not account.company or account.company.id == user_company:
+                    account_ids.append(account.id)
+            res[record.id] = account_ids
         return res
 
 
@@ -261,11 +345,7 @@ class Report(Workflow, ModelSQL, ModelView):
                 }, depends=_DEPENDS)
 
     work_productivity_monetary_parties = fields.Integer(
-        "Work Productivity Monetary Parties", required=True,
-        domain=[
-            ('work_productivity_monetary_parties', '>', 0),
-            ('work_productivity_monetary_parties', '<=', 99999999),
-            ])
+        "Work Productivity Monetary Parties")
     work_productivity_monetary_payments = fields.Numeric(
         "Work Productivity Monetary Payments", digits=(15, 2))
     work_productivity_monetary_withholdings_amount = fields.Numeric(
@@ -274,8 +354,12 @@ class Report(Workflow, ModelSQL, ModelView):
     work_productivity_in_kind_parties = fields.Integer(
         "Work Productivity In-Kind Parties", required=True,
         domain=[
-            ('work_productivity_in_kind_parties', '>', 0),
-            ('work_productivity_in_kind_parties', '<=', 99999999),
+            If(Eval('work_productivity_in_kind_value_benefits', 0) != 0,
+                [
+                    ('work_productivity_in_kind_parties', '>', 0),
+                    ('work_productivity_in_kind_parties', '<=', 99999999),
+                    ],
+                ('work_productivity_in_kind_parties', '=', 0)),
             ])
     work_productivity_in_kind_value_benefits = fields.Numeric(
         "Work Productivity In-Kind Value Benefits", digits=(15, 2))
@@ -283,11 +367,7 @@ class Report(Workflow, ModelSQL, ModelView):
         "Work Productivity In-Kind Payments Amount", digits=(15, 2))
 
     economic_activities_productivity_monetary_parties = fields.Integer(
-        "Economic Activities Productivity Monetary Parties", required=True,
-        domain=[
-            ('economic_activities_productivity_monetary_parties', '>', 0),
-            ('economic_activities_productivity_monetary_parties', '<=', 99999999),
-            ])
+        "Economic Activities Productivity Monetary Parties", readonly=True)
     economic_activities_productivity_monetary_payments = fields.Numeric(
         "Economic Activities Productivity Monetary Payments",
         digits=(15, 2))
@@ -299,8 +379,12 @@ class Report(Workflow, ModelSQL, ModelView):
     economic_activities_productivity_in_kind_parties = fields.Integer(
         "Economic Activities Productivity In-Kind Parties", required=True,
         domain=[
-            ('economic_activities_productivity_in_kind_parties', '>', 0),
-            ('economic_activities_productivity_in_kind_parties', '<=', 99999999),
+            If(Eval('economic_activities_productivity_in_kind_value_benefits', 0) != 0,
+                [
+                    ('economic_activities_productivity_in_kind_parties', '>', 0),
+                    ('economic_activities_productivity_in_kind_parties', '<=', 99999999),
+                    ],
+                ('economic_activities_productivity_in_kind_parties', '=', 0)),
             ])
     economic_activities_productivity_in_kind_value_benefits = fields.Numeric(
         "Economic Activities Productivity In-Kind Value Benefits",
@@ -312,8 +396,12 @@ class Report(Workflow, ModelSQL, ModelView):
     awards_monetary_parties = fields.Integer("Awards Monetary Parties",
         required=True,
         domain=[
-            ('awards_monetary_parties', '>', 0),
-            ('awards_monetary_parties', '<=', 99999999),
+            If(Eval('awards_monetary_withholdings_amount', 0) != 0,
+                [
+                    ('awards_monetary_parties', '>', 0),
+                    ('awards_monetary_parties', '<=', 99999999),
+                    ],
+                ('awards_monetary_parties', '=', 0)),
             ])
     awards_monetary_payments = fields.Numeric(
         "Awards Monetary Payments", digits=(15, 2))
@@ -323,8 +411,12 @@ class Report(Workflow, ModelSQL, ModelView):
     awards_in_kind_parties = fields.Integer("Awards In-Kind Parties",
         required=True,
         domain=[
-            ('awards_in_kind_parties', '>', 0),
-            ('awards_in_kind_parties', '<=', 99999999),
+            If(Eval('awards_in_kind_payments_amount', 0) != 0,
+                [
+                    ('awards_in_kind_parties', '>', 0),
+                    ('awards_in_kind_parties', '<=', 99999999),
+                    ],
+                ('awards_in_kind_parties', '=', 0)),
             ])
     awards_in_kind_value_benefits = fields.Numeric(
         "Awards In-Kind Value Benefits", digits=(15, 2))
@@ -334,8 +426,12 @@ class Report(Workflow, ModelSQL, ModelView):
     gains_forestry_exploitation_monetary_parties = fields.Integer(
         "Gains Forestry Exploitation Monetary Parties", required=True,
         domain=[
-            ('gains_forestry_exploitation_monetary_parties', '>', 0),
-            ('gains_forestry_exploitation_monetary_parties', '<=', 99999999),
+            If(Eval('gains_forestry_exploitation_monetary_withholdings_amount', 0) != 0,
+                [
+                    ('gains_forestry_exploitation_monetary_parties', '>', 0),
+                    ('gains_forestry_exploitation_monetary_parties', '<=', 99999999),
+                    ],
+                ('gains_forestry_exploitation_monetary_parties', '=', 0)),
             ])
     gains_forestry_exploitation_monetary_payments = fields.Numeric(
         "Gains Forestry Exploitation Monetary Payments", digits=(15, 2))
@@ -346,8 +442,12 @@ class Report(Workflow, ModelSQL, ModelView):
     gains_forestry_exploitation_in_kind_parties = fields.Integer(
         "Gains Forestry Exploitation In-Kind Parties", required=True,
         domain=[
-            ('gains_forestry_exploitation_in_kind_parties', '>', 0),
-            ('gains_forestry_exploitation_in_kind_parties', '<=', 99999999),
+            If(Eval('gains_forestry_exploitation_in_kind_payments_amount', 0) != 0,
+                [
+                    ('gains_forestry_exploitation_in_kind_parties', '>', 0),
+                    ('gains_forestry_exploitation_in_kind_parties', '<=', 99999999),
+                    ],
+                ('gains_forestry_exploitation_in_kind_parties', '=', 0)),
             ])
     gains_forestry_exploitation_in_kind_value_benefits = fields.Numeric(
         "Gains Forestry Exploitation In-Kind Value Benefits", digits=(15, 2))
@@ -357,8 +457,12 @@ class Report(Workflow, ModelSQL, ModelView):
     image_rights_parties = fields.Integer("Image Rights Parties",
         required=True,
         domain=[
-            ('image_rights_parties', '>', 0),
-            ('image_rights_parties', '<=', 99999999),
+            If(Eval('image_rights_payments_amount', 0) != 0,
+                [
+                    ('image_rights_parties', '>', 0),
+                    ('image_rights_parties', '<=', 99999999),
+                    ],
+            ('image_rights_parties', '=', 0)),
             ])
     image_rights_service_payments = fields.Numeric(
         "Image Rights Service Payments", digits=(15, 2))
@@ -406,7 +510,7 @@ class Report(Workflow, ModelSQL, ModelView):
 
     @classmethod
     def __setup__(cls):
-        super(Report, cls).__setup__()
+        super().__setup__()
         cls._order = [
             ('year', 'DESC'),
             ('period', 'DESC'),
@@ -445,14 +549,6 @@ class Report(Workflow, ModelSQL, ModelView):
     def default_company():
         return Transaction().context.get('company')
 
-    #@classmethod
-    #def default_company_surnname(cls):
-    #    pool = Pool()
-    #    Company = pool.get('company.company')
-    #    company_id = cls.default_company()
-    #    if company_id:
-    #        return Company(company_id).party.name.upper()
-
     @classmethod
     def default_company_vat(cls):
         pool = Pool()
@@ -467,11 +563,7 @@ class Report(Workflow, ModelSQL, ModelView):
             return vat_code
 
     @staticmethod
-    def default_work_productivity_monetary_payments():
-        return _ZERO
-
-    @staticmethod
-    def default_work_productivity_monetary_withholdings_amount():
+    def default_work_productivity_in_kind_parties():
         return _ZERO
 
     @staticmethod
@@ -483,11 +575,19 @@ class Report(Workflow, ModelSQL, ModelView):
         return _ZERO
 
     @staticmethod
+    def default_economic_activities_productivity_in_kind_parties():
+        return _ZERO
+
+    @staticmethod
     def default_economic_activities_productivity_in_kind_value_benefits():
         return _ZERO
 
     @staticmethod
     def default_economic_activities_productivity_in_kind_payments_amount():
+        return _ZERO
+
+    @staticmethod
+    def default_awards_monetary_parties():
         return _ZERO
 
     @staticmethod
@@ -499,11 +599,19 @@ class Report(Workflow, ModelSQL, ModelView):
         return _ZERO
 
     @staticmethod
+    def default_awards_in_kind_parties():
+        return _ZERO
+
+    @staticmethod
     def default_awards_in_kind_value_benefits():
         return _ZERO
 
     @staticmethod
     def default_awards_in_kind_payments_amount():
+        return _ZERO
+
+    @staticmethod
+    def default_gains_forestry_exploitation_monetary_parties():
         return _ZERO
 
     @staticmethod
@@ -515,11 +623,19 @@ class Report(Workflow, ModelSQL, ModelView):
         return _ZERO
 
     @staticmethod
+    def default_gains_forestry_exploitation_in_kind_parties():
+        return _ZERO
+
+    @staticmethod
     def default_gains_forestry_exploitation_in_kind_value_benefits():
         return _ZERO
 
     @staticmethod
     def default_gains_forestry_exploitation_in_kind_payments_amount():
+        return _ZERO
+
+    @staticmethod
+    def default_image_rights_parties():
         return _ZERO
 
     @staticmethod
@@ -591,19 +707,32 @@ class Report(Workflow, ModelSQL, ModelView):
         pool = Pool()
         Mapping = pool.get('aeat.111.mapping')
         Period = pool.get('account.period')
+        Account = pool.get('account.account')
+        MoveLine = pool.get('account.move.line')
         TaxCode = pool.get('account.tax.code')
         Tax = pool.get('account.tax')
         TaxLine = pool.get('account.tax.line')
         Invoice = pool.get('account.invoice')
 
         for report in reports:
-            mapping = {}
+            # Work Productivity
+            mapping_accounts = {}
             for mapp in Mapping.search([
+                    ('type_', '=', 'account'),
+                    ('company', '=', report.company),
+                    ]):
+                for account in mapp.account_by_companies:
+                    mapping_accounts[account.id] = mapp.aeat111_field.name
+            # Economic Activities
+            mapping_codes = {}
+            for mapp in Mapping.search([
+                    ('type_', '=', 'code'),
                     ('company', '=', report.company),
                     ]):
                 for code in mapp.code_by_companies:
-                    mapping[code.id] = mapp.aeat111_field.name
+                    mapping_codes[code.id] = mapp.aeat111_field.name
 
+            year = report.year
             period = report.period
             if 'T' in period:
                 period = period[0]
@@ -612,8 +741,6 @@ class Report(Workflow, ModelSQL, ModelView):
             else:
                 start_month = int(period)
                 end_month = start_month
-
-            year = report.year
             lday = calendar.monthrange(year, end_month)[1]
             periods = [p.id for p in Period.search([
                     ('start_date', '>=', datetime.date(year, start_month, 1)),
@@ -621,21 +748,26 @@ class Report(Workflow, ModelSQL, ModelView):
                     ('company', '=', report.company),
                     ])]
 
-            for field in mapping.values():
+            for field in mapping_accounts.values():
+                setattr(report, field, _ZERO)
+            for field in mapping_codes.values():
                 setattr(report, field, _ZERO)
 
-            # As only map the Economic Activities, only need to control its
-            # parties.
-            parties = set()
+            economic_activities_parties = set()
             with Transaction().set_context(periods=periods):
-                for code in TaxCode.browse(mapping.keys()):
-                    value = getattr(report, mapping[code.id])
-                    amount = value + code.amount
-                    setattr(report, mapping[code.id], abs(amount))
+                for account in Account.browse(mapping_accounts.keys()):
+                    value = getattr(report, mapping_accounts[account.id])
+                    amount = value + account.debit - account.credit
+                    setattr(report, mapping_accounts[account.id], abs(amount))
 
-                    # To count the numebr of parties we have to do it from the
-                    # party in the realted moves of all codes used for the
-                    # amount calculation
+                for code in TaxCode.browse(mapping_codes.keys()):
+                    value = getattr(report, mapping_codes[code.id])
+                    amount = value + code.amount
+                    setattr(report, mapping_codes[code.id], abs(amount))
+
+                    # To count the number of parties of economic activities
+                    # we have to do it from the party in the related moves
+                    # of all codes used for the amount calculation
                     children = []
                     childs = TaxCode.search([
                             ('parent', 'child_of', [code]),
@@ -654,13 +786,20 @@ class Report(Workflow, ModelSQL, ModelView):
                         if domain == [['OR']]:
                             continue
                         domain.extend(Tax._amount_domain())
+                        a = TaxLine.search(domain)
                         for tax_line in TaxLine.search(domain):
                             if (tax_line.move_line and tax_line.move_line.move
-                                    and isinstance(tax_line.move_line.move.origin,
+                                    and isinstance(
+                                        tax_line.move_line.move.origin,
                                         Invoice)):
-                                parties.add(tax_line.move_line.move.origin.party)
+                                economic_activities_parties.add(
+                                    tax_line.move_line.move.origin.party)
+
+            if report.work_productivity_monetary_withholdings_amount == 0:
+                report.work_productivity_monetary_parties = 0
             report.economic_activities_productivity_monetary_parties = (
-                len(parties) if parties else 0)
+                len(economic_activities_parties)
+                if economic_activities_parties else 0)
             report.save()
 
         cls.write(reports, {
@@ -687,6 +826,9 @@ class Report(Workflow, ModelSQL, ModelView):
         pass
 
     def create_file(self):
+        if (self.work_productivity_monetary_withholdings_amount != 0 and self.work_productivity_monetary_parties == 0):
+            raise UserError(gettext('aeat_111.msg_invalid_work_productivity_monetary_parties'))
+
         header = Record(aeat111.HEADER_RECORD)
         footer = Record(aeat111.FOOTER_RECORD)
         record = Record(aeat111.RECORD)

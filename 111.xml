@@ -3,13 +3,28 @@
 contains the full copyright notices and license terms. -->
 <tryton>
     <data grouped="1">
+        <!-- [02] -->
+        <record model="aeat.111.template.mapping" id="aeat_111_mapping_code_02">
+            <field name="type_">account</field>
+            <field name="aeat111_field"
+                search="[('name', '=','work_productivity_monetary_payments'), ('module', '=', 'aeat_111')]"/>
+        </record>
+        <!-- [03] -->
+        <record model="aeat.111.template.mapping" id="aeat_111_mapping_code_03">
+            <field name="type_">account</field>
+            <field name="aeat111_field"
+                search="[('name', '=','work_productivity_monetary_withholdings_amount'), ('module', '=', 'aeat_111')]"/>
+        </record>
+
         <!-- [08] -->
         <record model="aeat.111.template.mapping" id="aeat_111_mapping_code_08">
+            <field name="type_">code</field>
             <field name="aeat111_field"
                 search="[('name', '=','economic_activities_productivity_monetary_payments'), ('module', '=', 'aeat_111')]"/>
         </record>
         <!-- [09] -->
         <record model="aeat.111.template.mapping" id="aeat_111_mapping_code_09">
+            <field name="type_">code</field>
             <field name="aeat111_field"
                 search="[('name', '=','economic_activities_productivity_monetary_withholdings_amount'), ('module', '=', 'aeat_111')]"/>
         </record>
