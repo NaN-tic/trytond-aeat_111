@@ -379,10 +379,13 @@ class Report(Workflow, ModelSQL, ModelView):
     economic_activities_productivity_in_kind_parties = fields.Integer(
         "Economic Activities Productivity In-Kind Parties", required=True,
         domain=[
-            If(Eval('economic_activities_productivity_in_kind_value_benefits', 0) != 0,
+            If(Eval('economic_activities_productivity_in_kind_value_benefits',
+                    0) != 0,
                 [
-                    ('economic_activities_productivity_in_kind_parties', '>', 0),
-                    ('economic_activities_productivity_in_kind_parties', '<=', 99999999),
+                    ('economic_activities_productivity_in_kind_parties', '>',
+                        0),
+                    ('economic_activities_productivity_in_kind_parties', '<=',
+                        99999999),
                     ],
                 ('economic_activities_productivity_in_kind_parties', '=', 0)),
             ])
@@ -426,10 +429,12 @@ class Report(Workflow, ModelSQL, ModelView):
     gains_forestry_exploitation_monetary_parties = fields.Integer(
         "Gains Forestry Exploitation Monetary Parties", required=True,
         domain=[
-            If(Eval('gains_forestry_exploitation_monetary_withholdings_amount', 0) != 0,
+            If(Eval('gains_forestry_exploitation_monetary_withholdings_amount',
+                    0) != 0,
                 [
                     ('gains_forestry_exploitation_monetary_parties', '>', 0),
-                    ('gains_forestry_exploitation_monetary_parties', '<=', 99999999),
+                    ('gains_forestry_exploitation_monetary_parties', '<=',
+                        99999999),
                     ],
                 ('gains_forestry_exploitation_monetary_parties', '=', 0)),
             ])
@@ -442,10 +447,12 @@ class Report(Workflow, ModelSQL, ModelView):
     gains_forestry_exploitation_in_kind_parties = fields.Integer(
         "Gains Forestry Exploitation In-Kind Parties", required=True,
         domain=[
-            If(Eval('gains_forestry_exploitation_in_kind_payments_amount', 0) != 0,
+            If(Eval('gains_forestry_exploitation_in_kind_payments_amount',
+                    0) != 0,
                 [
                     ('gains_forestry_exploitation_in_kind_parties', '>', 0),
-                    ('gains_forestry_exploitation_in_kind_parties', '<=', 99999999),
+                    ('gains_forestry_exploitation_in_kind_parties', '<=',
+                        99999999),
                     ],
                 ('gains_forestry_exploitation_in_kind_parties', '=', 0)),
             ])
@@ -486,7 +493,7 @@ class Report(Workflow, ModelSQL, ModelView):
             }, depends=['complementary_declaration'])
     company_party = fields.Function(fields.Many2One('party.party',
             'Company Party', context={
-                'company': Eval('company'),
+                'company': Eval('company', -1),
             }, depends=['company']), 'on_change_with_company_party')
     bank_account = fields.Many2One('bank.account', "Bank Account",
         domain=[
@@ -708,7 +715,6 @@ class Report(Workflow, ModelSQL, ModelView):
         Mapping = pool.get('aeat.111.mapping')
         Period = pool.get('account.period')
         Account = pool.get('account.account')
-        MoveLine = pool.get('account.move.line')
         TaxCode = pool.get('account.tax.code')
         Tax = pool.get('account.tax')
         TaxLine = pool.get('account.tax.line')
@@ -786,7 +792,6 @@ class Report(Workflow, ModelSQL, ModelView):
                         if domain == [['OR']]:
                             continue
                         domain.extend(Tax._amount_domain())
-                        a = TaxLine.search(domain)
                         for tax_line in TaxLine.search(domain):
                             if (tax_line.move_line and tax_line.move_line.move
                                     and isinstance(
@@ -826,8 +831,10 @@ class Report(Workflow, ModelSQL, ModelView):
         pass
 
     def create_file(self):
-        if (self.work_productivity_monetary_withholdings_amount != 0 and self.work_productivity_monetary_parties == 0):
-            raise UserError(gettext('aeat_111.msg_invalid_work_productivity_monetary_parties'))
+        if (self.work_productivity_monetary_withholdings_amount != 0
+                and self.work_productivity_monetary_parties == 0):
+            raise UserError(gettext(
+                    'aeat_111.msg_invalid_work_productivity_monetary_parties'))
 
         header = Record(aeat111.HEADER_RECORD)
         footer = Record(aeat111.FOOTER_RECORD)
