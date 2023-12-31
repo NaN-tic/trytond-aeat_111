@@ -2,6 +2,14 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
+msgctxt "field:account.invoice,aeat111_register:"
+msgid "AEAT 111 Register"
+msgstr "Registre AEAT 111"
+
+msgctxt "field:account.move.line,aeat111_register:"
+msgid "AEAT 111 Register"
+msgstr "Registre AEAT 111"
+
 msgctxt "field:aeat.111.mapping,account:"
 msgid "Account"
 msgstr "Compte"
@@ -25,6 +33,10 @@ msgstr "Codi impostos"
 msgctxt "field:aeat.111.mapping,company:"
 msgid "Company"
 msgstr "Empresa"
+
+msgctxt "field:aeat.111.mapping,debit_credit_type:"
+msgid "Debit Credit Type"
+msgstr "Tipus Deure Haver"
 
 msgctxt "field:aeat.111.mapping,template:"
 msgid "Template"
@@ -211,6 +223,10 @@ msgctxt "field:aeat.111.report,previous_declaration_receipt:"
 msgid "Previous Declaration Receipt"
 msgstr "Justificant declaració anterior"
 
+msgctxt "field:aeat.111.report,registers:"
+msgid "Registers"
+msgstr "Registres"
+
 msgctxt "field:aeat.111.report,result:"
 msgid "Result"
 msgstr "Resultat"
@@ -260,6 +276,38 @@ msgctxt "field:aeat.111.report,year:"
 msgid "Year"
 msgstr "Any"
 
+msgctxt "field:aeat.111.report.register,amount:"
+msgid "Amount"
+msgstr "Import"
+
+msgctxt "field:aeat.111.report.register,company:"
+msgid "Company"
+msgstr "Companyia"
+
+msgctxt "field:aeat.111.report.register,currency:"
+msgid "Currency"
+msgstr "Moneda"
+
+msgctxt "field:aeat.111.report.register,invoices:"
+msgid "Invoices"
+msgstr "Factures"
+
+msgctxt "field:aeat.111.report.register,move_lines:"
+msgid "Move Lines"
+msgstr "Apunts"
+
+msgctxt "field:aeat.111.report.register,party:"
+msgid "Party"
+msgstr "Tercer"
+
+msgctxt "field:aeat.111.report.register,report:"
+msgid "AEAT 111 Report"
+msgstr "Informe AEAT 111"
+
+msgctxt "field:aeat.111.report.register,type_:"
+msgid "Type"
+msgstr "Tipus"
+
 msgctxt "field:aeat.111.template.mapping,account:"
 msgid "Account Template"
 msgstr "Plantilla de compte"
@@ -271,6 +319,10 @@ msgstr "Camp"
 msgctxt "field:aeat.111.template.mapping,code:"
 msgid "Tax Code Template"
 msgstr "Plantilla de codi impost"
+
+msgctxt "field:aeat.111.template.mapping,debit_credit_type:"
+msgid "Debit Credit Type"
+msgstr "Tipus Deure Haver"
 
 msgctxt "field:aeat.111.template.mapping,type_:"
 msgid "Type"
@@ -308,6 +360,10 @@ msgctxt "model:aeat.111.report,name:"
 msgid "AEAT 111 Report"
 msgstr "Informe AEAT 111"
 
+msgctxt "model:aeat.111.report.register,name:"
+msgid "AEAT 111 Register"
+msgstr "Registre AEAT 111"
+
 msgctxt "model:aeat.111.template.mapping,name:"
 msgid "AEAT 111 Template Mapping"
 msgstr "Mapeig de plantilla AEAT 111"
@@ -320,9 +376,21 @@ msgctxt "model:ir.action,name:act_aeat_111_report"
 msgid "AEAT 111 Report"
 msgstr "Informe AEAT 111"
 
-msgctxt "model:ir.message,text:msg_invalid_currency"
-msgid "Currency in AEAT 111 report \"%(name)s\" must be Euro."
-msgstr "La moneda de l'informe AEAT 111 \"%(name)s\" ha de ser l'euro."
+msgctxt "model:ir.message,text:msg_delete_move_line_in_111report"
+msgid ""
+"The move line \"%(line)s\" cannot be deleted becasue is in a AEAT111 report "
+"\"%(report)s\"."
+msgstr ""
+"La línia de moviment \"%(line)s\" no es pot eliminar perquè es troba en un "
+"informe AEAT111 \"%(report)s\"."
+
+msgctxt "model:ir.message,text:msg_draft_cancel_invoice_in_111report"
+msgid ""
+"The invoice \"%(invoice)s\" cannot be changed to cancel or draft becasue is "
+"in a AEAT111 report \"%(report)s\"."
+msgstr ""
+"La factura \"%(invoice)s\" no es pot cancel·lar o passar a esborrany perquè "
+"es troba en un informe AEAT111 \"%(report)s\"."
 
 msgctxt "model:ir.message,text:msg_invalid_work_productivity_monetary_parties"
 msgid ""
@@ -363,6 +431,22 @@ msgstr "Mapeig AEAT 111"
 msgctxt "model:ir.ui.menu,name:menu_aeat_111_report"
 msgid "AEAT 111 Report"
 msgstr "Informes AEAT 111"
+
+msgctxt "selection:aeat.111.mapping,debit_credit_type:"
+msgid "Both"
+msgstr "Tots dos"
+
+msgctxt "selection:aeat.111.mapping,debit_credit_type:"
+msgid "Credit"
+msgstr "Haver"
+
+msgctxt "selection:aeat.111.mapping,debit_credit_type:"
+msgid "Debit"
+msgstr "Deure"
+
+msgctxt "selection:aeat.111.mapping,debit_credit_type:"
+msgid "Not apply"
+msgstr "No aplica"
 
 msgctxt "selection:aeat.111.mapping,type_:"
 msgid "Account"
@@ -468,6 +552,34 @@ msgctxt "selection:aeat.111.report,type:"
 msgid "Negative"
 msgstr "Negatiu"
 
+msgctxt "selection:aeat.111.report.register,type_:"
+msgid "Economic Activity"
+msgstr "Activitat Econòmica"
+
+msgctxt "selection:aeat.111.report.register,type_:"
+msgid "Work Amount"
+msgstr "Retencions Treball"
+
+msgctxt "selection:aeat.111.report.register,type_:"
+msgid "Work Payment"
+msgstr "Percepcions Treball"
+
+msgctxt "selection:aeat.111.template.mapping,debit_credit_type:"
+msgid "Both"
+msgstr "Tots dos"
+
+msgctxt "selection:aeat.111.template.mapping,debit_credit_type:"
+msgid "Credit"
+msgstr "Haver"
+
+msgctxt "selection:aeat.111.template.mapping,debit_credit_type:"
+msgid "Debit"
+msgstr "Deure"
+
+msgctxt "selection:aeat.111.template.mapping,debit_credit_type:"
+msgid "Not apply"
+msgstr "No aplica"
+
 msgctxt "selection:aeat.111.template.mapping,type_:"
 msgid "Account"
 msgstr "Compte"
@@ -495,6 +607,10 @@ msgstr "Rendim. Activitat econòmica"
 msgctxt "view:aeat.111.report:"
 msgid "Gains Forestry Explitation"
 msgstr "Guanys explotació forestal"
+
+msgctxt "view:aeat.111.report:"
+msgid "General"
+msgstr "General"
 
 msgctxt "view:aeat.111.report:"
 msgid "Image Rights"
@@ -525,6 +641,10 @@ msgid "Payments:"
 msgstr "Import Percepcions:"
 
 msgctxt "view:aeat.111.report:"
+msgid "Registers"
+msgstr "Registres"
+
+msgctxt "view:aeat.111.report:"
 msgid "Result"
 msgstr "Resultat"
 
@@ -537,5 +657,9 @@ msgid "Withholding:"
 msgstr "Import Retencions:"
 
 msgctxt "view:aeat.111.report:"
-msgid "Work Productivity"
-msgstr "Rendim. del treball"
+msgid ""
+"Work Productivity (If Monetary is calculed the number of parties must be "
+"update manually)"
+msgstr ""
+"Rendim. del treball (Si es calcula Dineraris, el Nº de tercers s'ha "
+"d'actualitzar manualment)"

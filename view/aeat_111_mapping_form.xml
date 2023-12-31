@@ -4,6 +4,8 @@ contains the full copyright notices and license terms. -->
 <form>
     <label name="aeat111_field" />
     <field name="aeat111_field" />
+    <label name="debit_credit_type" />
+    <field name="debit_credit_type" />
     <field name="account_by_companies" colspan="4" view_ids="account.account_view_list" />
     <field name="code_by_companies" colspan="4" view_ids="account.tax_code_view_list" />
 </form>
