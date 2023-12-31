@@ -84,6 +84,17 @@ contains the full copyright notices and license terms. -->
             <field name="perm_delete" eval="True"/>
         </record>
 
+        <record model="ir.ui.view" id="aeat_111_report_register_form_view">
+            <field name="model">aeat.111.report.register</field>
+            <field name="type">form</field>
+            <field name="name">register_form</field>
+        </record>
+        <record model="ir.ui.view" id="aeat_111_report_register_tree_view">
+            <field name="model">aeat.111.report.register</field>
+            <field name="type">tree</field>
+            <field name="name">register_tree</field>
+        </record>
+
         <!-- register buttons -->
         <record model="ir.model.button" id="aeat_111_report_process_button">
             <field name="name">process</field>

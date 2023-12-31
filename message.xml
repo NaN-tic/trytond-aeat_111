@@ -3,11 +3,14 @@
 this repository contains the full copyright notices and license terms. -->
 <tryton>
     <data grouped="1">
-        <record model="ir.message" id="msg_invalid_currency">
-            <field name="text">Currency in AEAT 111 report "%(name)s" must be Euro.</field>
-        </record>
         <record model="ir.message" id="msg_invalid_work_productivity_monetary_parties">
             <field name="text">The Work Productivity Monetary Parties field has an invalid value. Must be the numebr of employees.</field>
+        </record>
+	<record model="ir.message" id="msg_draft_cancel_invoice_in_111report">
+            <field name="text">The invoice "%(invoice)s" cannot be changed to cancel or draft becasue is in a AEAT111 report "%(report)s".</field>
+        </record>
+	<record model="ir.message" id="msg_delete_move_line_in_111report">
+            <field name="text">The move line "%(line)s" cannot be deleted becasue is in a AEAT111 report "%(report)s".</field>
         </record>
     </data>
 </tryton>

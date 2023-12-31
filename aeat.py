@@ -3,6 +3,7 @@ from decimal import Decimal
 import datetime
 import calendar
 import unicodedata
+from itertools import groupby
 
 from retrofix import aeat111
 from retrofix.record import Record, write as retrofix_write
@@ -12,6 +13,7 @@ from trytond.pyson import Eval, Bool, If
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
 from trytond.transaction import Transaction
+from trytond.modules.currency.fields import Monetary
 
 
 _DEPENDS = ['state']
@@ -67,6 +69,14 @@ class TemplateMapping(ModelSQL):
         states={
             'invisible': Eval('type_') != 'account',
             })
+    debit_credit_type = fields.Selection([
+            (None, 'Not apply'),
+            ('debit', 'Debit'),
+            ('credit', 'Credit'),
+            ('both', 'Both'),
+            ], 'Debit Credit Type', states={
+                'invisible': Eval('type_') != 'account',
+                })
     code = fields.Many2Many('aeat.111.mapping-account.tax.code.template',
         'mapping', 'code', 'Tax Code Template',
         states={
@@ -90,6 +100,8 @@ class TemplateMapping(ModelSQL):
         res = {}
         if mapping is None or mapping.type_ != self.type_:
             res['type_'] = self.type_
+        if mapping is None or mapping.debit_credit_type != self.debit_credit_type:
+            res['debit_credit_type'] = self.debit_credit_type
         if mapping is None or mapping.aeat111_field != self.aeat111_field:
             res['aeat111_field'] = self.aeat111_field.id
         res['account'] = []
@@ -237,6 +249,15 @@ class Mapping(ModelSQL, ModelView):
             'required': Eval('type_') == 'account',
             'invisible': Eval('type_') != 'account',
             }, depends=['type_']), 'get_account_by_companies')
+    debit_credit_type = fields.Selection([
+            (None, 'Not apply'),
+            ('debit', 'Debit'),
+            ('credit', 'Credit'),
+            ('both', 'Both'),
+            ], 'Debit Credit Type', states={
+                'required': Eval('type_') == 'account',
+                'invisible': Eval('type_') != 'account',
+                })
     code = fields.Many2Many('aeat.111.mapping-account.tax.code', 'mapping',
         'code', 'Tax Code',
         states={
@@ -264,6 +285,10 @@ class Mapping(ModelSQL, ModelView):
     @staticmethod
     def default_company():
         return Transaction().context.get('company') or None
+
+    @staticmethod
+    def default_debit_credit_type():
+        return 'both'
 
     @classmethod
     def get_code_by_companies(cls, records, name):
@@ -476,6 +501,9 @@ class Report(Workflow, ModelSQL, ModelView):
     image_rights_payments_amount = fields.Numeric(
         "Image Rights Payments Amount", digits=(15, 2))
 
+    registers = fields.One2Many('aeat.111.report.register', 'report',
+        'Registers', readonly=True)
+
     withholdings_payments_amount = fields.Function(fields.Numeric(
             "Withholding and Payments", digits=(15, 2)),
         'get_withholdings_payments_amount')
@@ -687,7 +715,7 @@ class Report(Workflow, ModelSQL, ModelView):
 
     def get_withholdings_payments_amount(self, name=None):
         return (
-            self.work_productivity_monetary_withholdings_amount
+            (self.work_productivity_monetary_withholdings_amount or _ZERO)
             + self.work_productivity_in_kind_payments_amount
             + (self.
                 economic_activities_productivity_monetary_withholdings_amount
@@ -719,6 +747,8 @@ class Report(Workflow, ModelSQL, ModelView):
         Tax = pool.get('account.tax')
         TaxLine = pool.get('account.tax.line')
         Invoice = pool.get('account.invoice')
+        MoveLine = pool.get('account.move.line')
+        Register = pool.get('aeat.111.report.register')
 
         for report in reports:
             # Work Productivity
@@ -728,7 +758,8 @@ class Report(Workflow, ModelSQL, ModelView):
                     ('company', '=', report.company),
                     ]):
                 for account in mapp.account_by_companies:
-                    mapping_accounts[account.id] = mapp.aeat111_field.name
+                    mapping_accounts[account.id] = (mapp.aeat111_field.name,
+                        mapp.debit_credit_type)
             # Economic Activities
             mapping_codes = {}
             for mapp in Mapping.search([
@@ -754,18 +785,15 @@ class Report(Workflow, ModelSQL, ModelView):
                     ('company', '=', report.company),
                     ])]
 
-            for field in mapping_accounts.values():
+            for field, _ in mapping_accounts.values():
                 setattr(report, field, _ZERO)
             for field in mapping_codes.values():
                 setattr(report, field, _ZERO)
 
-            economic_activities_parties = set()
+            work_payment_registers = {}
+            work_amount_registers = {}
+            economic_activities_registers = {}
             with Transaction().set_context(periods=periods):
-                for account in Account.browse(mapping_accounts.keys()):
-                    value = getattr(report, mapping_accounts[account.id])
-                    amount = value + account.debit - account.credit
-                    setattr(report, mapping_accounts[account.id], abs(amount))
-
                 for code in TaxCode.browse(mapping_codes.keys()):
                     value = getattr(report, mapping_codes[code.id])
                     amount = value + code.amount
@@ -774,6 +802,8 @@ class Report(Workflow, ModelSQL, ModelView):
                     # To count the number of parties of economic activities
                     # we have to do it from the party in the related moves
                     # of all codes used for the amount calculation
+                    # It is expected TaxCode was created from invoices, not
+                    # manually.
                     children = []
                     childs = TaxCode.search([
                             ('parent', 'child_of', [code]),
@@ -797,14 +827,86 @@ class Report(Workflow, ModelSQL, ModelView):
                                     and isinstance(
                                         tax_line.move_line.move.origin,
                                         Invoice)):
-                                economic_activities_parties.add(
-                                    tax_line.move_line.move.origin.party)
+                                invoice = tax_line.move_line.move.origin
+                                party = invoice.party
+                                if party in economic_activities_registers:
+                                    economic_activities_registers[
+                                        party].amount += abs(tax_line.amount)
+                                    economic_activities_registers[
+                                        party].invoices += (invoice,)
+                                else:
+                                    register = Register()
+                                    register.report = report
+                                    register.type_ = 'economic_activity'
+                                    register.party = party
+                                    register.amount = abs(tax_line.amount)
+                                    register.invoices = (invoice,)
+                                    economic_activities_registers[party] = (
+                                        register)
 
-            if report.work_productivity_monetary_withholdings_amount == 0:
-                report.work_productivity_monetary_parties = 0
+                # To count the number of parties of work
+                # we have to do it from the party in the related moves
+                # of all accounts used for the amount calculation deffined in
+                # the mapping.
+                for account in Account.browse(mapping_accounts.keys()):
+                    field = mapping_accounts[account.id][0]
+                    debit_credit_type = mapping_accounts[account.id][1]
+                    value = getattr(report, field)
+                    amount = value
+                    if debit_credit_type in ('debit', 'both'):
+                        amount += account.debit
+                    if debit_credit_type in ('credit', 'both'):
+                        amount -= account.credit
+                    setattr(report, field, abs(amount))
+                    domain = [
+                        ('move.period', 'in', periods),
+                        ('account', '=', account),
+                        ]
+                    if debit_credit_type == 'debit':
+                        domain.append(
+                            ('debit', '!=', 0),
+                            )
+                    elif debit_credit_type == 'credit':
+                        domain.append(
+                            ('credit', '!=', 0),
+                            )
+                    move_lines = MoveLine.search(domain)
+                    payment = 'payment' in field
+                    for party, group_lines in groupby(move_lines,
+                            key=lambda l: l.party):
+                        lines = list(group_lines)
+                        amount = sum(x.debit - x.credit for x in lines)
+                        if payment and party in work_payment_registers:
+                            work_payment_registers[party].amount += abs(amount)
+                            work_payment_registers[party].move_lines += tuple(lines)
+                        elif not payment and party in work_amount_registers:
+                            work_amount_registers[party].amount += abs(amount)
+                            work_amount_registers[party].move_lines += tuple(lines)
+                        else:
+                            register = Register()
+                            register.report = report
+                            register.amount = abs(amount)
+                            register.move_lines = lines
+                            if payment:
+                                register.type_ = 'work_payment'
+                                work_payment_registers[party] = register
+                            else:
+                                register.type_ = 'work_amount'
+                                work_amount_registers[party] = register
+            registers = []
+            if work_payment_registers:
+                registers.extend(work_payment_registers.values())
+            if work_amount_registers:
+                registers.extend(work_amount_registers.values())
+            if economic_activities_registers:
+                registers.extend(economic_activities_registers.values())
+            if registers:
+                Register.save(registers)
+            report.work_productivity_monetary_parties = (
+                len(work_amount_registers) if work_amount_registers else 0)
             report.economic_activities_productivity_monetary_parties = (
-                len(economic_activities_parties)
-                if economic_activities_parties else 0)
+                len(economic_activities_registers)
+                if economic_activities_registers else 0)
             report.save()
 
         cls.write(reports, {
@@ -828,7 +930,10 @@ class Report(Workflow, ModelSQL, ModelView):
     @ModelView.button
     @Workflow.transition('draft')
     def draft(cls, reports):
-        pass
+        registers = [register for report in reports
+            for register in report.registers]
+        if registers: 
+            Register.delete(registers)
 
     def create_file(self):
         if (self.work_productivity_monetary_withholdings_amount != 0
@@ -865,3 +970,46 @@ class Report(Workflow, ModelSQL, ModelView):
             data = data.encode('iso-8859-1')
         self.file_ = self.__class__.file_.cast(data)
         self.save()
+
+
+class Register(ModelSQL, ModelView):
+    """
+    AEAT 111 Register
+    """
+    __name__ = 'aeat.111.report.register'
+
+    company = fields.Function(fields.Many2One('company.company', 'Company'),
+        'on_change_with_company', searcher='search_company')
+    report = fields.Many2One('aeat.111.report', 'AEAT 111 Report')
+    type_ = fields.Selection([
+            ('work_payment', 'Work Payment'),
+            ('work_amount', 'Work Amount'),
+            ('economic_activity', 'Economic Activity'),
+            ], 'Type', required=True)
+    party = fields.Many2One(
+        'party.party', 'Party',
+        context={
+            'company': Eval('company', -1),
+            },
+        depends={'company'})
+    currency = fields.Function(fields.Many2One('currency.currency', 'Currency'),
+        'on_change_with_currency')
+    amount = Monetary("Amount", currency='currency', digits='currency')
+    invoices = fields.One2Many('account.invoice', 'aeat111_register',
+        'Invoices', readonly=True)
+    move_lines = fields.One2Many('account.move.line', 'aeat111_register',
+        'Move Lines', readonly=True)
+
+    @fields.depends('report', '_parent_report.company')
+    def on_change_with_company(self, name=None):
+        return (self.report and self.report.company
+            and self.report.company.id or None)
+
+    @classmethod
+    def search_company(cls, name, clause):
+        return [('report.%s' % name,) + tuple(clause[1:])]
+
+    @fields.depends('report', '_parent_report.currency')
+    def on_change_with_currency(self, name=None):
+        return (self.report and self.report.currency
+            and self.report.currency.id or None)

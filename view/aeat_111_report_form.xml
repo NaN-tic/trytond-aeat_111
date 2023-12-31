@@ -14,100 +14,107 @@ contains the full copyright notices and license terms. -->
     <label name="period"/>
     <field name="period"/>
 
-    <separator id="work_productivity" string="Work Productivity" colspan="7"/>
-    <label string="Monetary" id="wor_productivity_monetary"/>
-    <label string="Num of Parties:" name="work_productivity_monetary_parties"/>
-    <field name="work_productivity_monetary_parties"/>
-    <label string="Payments:" name="work_productivity_monetary_payments"/>
-    <field name="work_productivity_monetary_payments"/>
-    <label string="Withholding:" name="work_productivity_monetary_withholdings_amount"/>
-    <field name="work_productivity_monetary_withholdings_amount"/>
+    <notebook colspan="7">
+        <page string="General" id="general" col="7">
+            <separator id="work_productivity" string="Work Productivity (If Monetary is calculed the number of parties must be update manually)" colspan="7"/>
+            <label string="Monetary" id="wor_productivity_monetary"/>
+            <label string="Num of Parties:" name="work_productivity_monetary_parties"/>
+            <field name="work_productivity_monetary_parties"/>
+            <label string="Payments:" name="work_productivity_monetary_payments"/>
+            <field name="work_productivity_monetary_payments"/>
+            <label string="Withholding:" name="work_productivity_monetary_withholdings_amount"/>
+            <field name="work_productivity_monetary_withholdings_amount"/>
 
-    <label string="In-Kind" id="work_productivity_in_kind"/>
-    <label string="Num of Parties:" name="work_productivity_in_kind_parties"/>
-    <field name="work_productivity_in_kind_parties"/>
-    <label string="Value:" name="work_productivity_in_kind_value_benefits"/>
-    <field name="work_productivity_in_kind_value_benefits"/>
-    <label string="Payments Amount:" name="work_productivity_in_kind_payments_amount"/>
-    <field name="work_productivity_in_kind_payments_amount"/>
+            <label string="In-Kind" id="work_productivity_in_kind"/>
+            <label string="Num of Parties:" name="work_productivity_in_kind_parties"/>
+            <field name="work_productivity_in_kind_parties"/>
+            <label string="Value:" name="work_productivity_in_kind_value_benefits"/>
+            <field name="work_productivity_in_kind_value_benefits"/>
+            <label string="Payments Amount:" name="work_productivity_in_kind_payments_amount"/>
+            <field name="work_productivity_in_kind_payments_amount"/>
 
-    <separator id="economic_activity" string="Economic Activity" colspan="7"/>
-    <label string="Monetary" id="economic_activity_moneetary"/>
-    <label string="Num of Parties:" name="economic_activities_productivity_monetary_parties"/>
-    <field name="economic_activities_productivity_monetary_parties"/>
-    <label string="Payments:" name="economic_activities_productivity_monetary_payments"/>
-    <field name="economic_activities_productivity_monetary_payments"/>
-    <label string="Withholding:" name="economic_activities_productivity_monetary_withholdings_amount"/>
-    <field name="economic_activities_productivity_monetary_withholdings_amount"/>
+            <separator id="economic_activity" string="Economic Activity" colspan="7"/>
+            <label string="Monetary" id="economic_activity_moneetary"/>
+            <label string="Num of Parties:" name="economic_activities_productivity_monetary_parties"/>
+            <field name="economic_activities_productivity_monetary_parties"/>
+            <label string="Payments:" name="economic_activities_productivity_monetary_payments"/>
+            <field name="economic_activities_productivity_monetary_payments"/>
+            <label string="Withholding:" name="economic_activities_productivity_monetary_withholdings_amount"/>
+            <field name="economic_activities_productivity_monetary_withholdings_amount"/>
 
-    <label string="In-Kind" id="economic_activity_in_kind"/>
-    <label string="Num of Parties:" name="economic_activities_productivity_in_kind_parties"/>
-    <field name="economic_activities_productivity_in_kind_parties"/>
-    <label string="Value:" name="economic_activities_productivity_in_kind_value_benefits"/>
-    <field name="economic_activities_productivity_in_kind_value_benefits"/>
-    <label string="Payments Amount:" name="economic_activities_productivity_in_kind_payments_amount"/>
-    <field name="economic_activities_productivity_in_kind_payments_amount"/>
+            <label string="In-Kind" id="economic_activity_in_kind"/>
+            <label string="Num of Parties:" name="economic_activities_productivity_in_kind_parties"/>
+            <field name="economic_activities_productivity_in_kind_parties"/>
+            <label string="Value:" name="economic_activities_productivity_in_kind_value_benefits"/>
+            <field name="economic_activities_productivity_in_kind_value_benefits"/>
+            <label string="Payments Amount:" name="economic_activities_productivity_in_kind_payments_amount"/>
+            <field name="economic_activities_productivity_in_kind_payments_amount"/>
 
-    <separator id="awards" string="Awards" colspan="7"/>
-    <label string="Monetary" id="awards_monetary"/>
-    <label string="Num of Parties:" name="awards_monetary_parties"/>
-    <field name="awards_monetary_parties"/>
-    <label string="Payments:" name="awards_monetary_payments"/>
-    <field name="awards_monetary_payments"/>
-    <label string="Withholding:" name="awards_monetary_withholdings_amount"/>
-    <field name="awards_monetary_withholdings_amount"/>
+            <separator id="awards" string="Awards" colspan="7"/>
+            <label string="Monetary" id="awards_monetary"/>
+            <label string="Num of Parties:" name="awards_monetary_parties"/>
+            <field name="awards_monetary_parties"/>
+            <label string="Payments:" name="awards_monetary_payments"/>
+            <field name="awards_monetary_payments"/>
+            <label string="Withholding:" name="awards_monetary_withholdings_amount"/>
+            <field name="awards_monetary_withholdings_amount"/>
 
-    <label string="In-Kind" id="awards_in_kind"/>
-    <label string="Num of Parties:" name="awards_in_kind_parties"/>
-    <field name="awards_in_kind_parties"/>
-    <label string="Value:" name="awards_in_kind_value_benefits"/>
-    <field string="Payments Amount:" name="awards_in_kind_value_benefits"/>
-    <label name="awards_in_kind_payments_amount"/>
-    <field name="awards_in_kind_payments_amount"/>
+            <label string="In-Kind" id="awards_in_kind"/>
+            <label string="Num of Parties:" name="awards_in_kind_parties"/>
+            <field name="awards_in_kind_parties"/>
+            <label string="Value:" name="awards_in_kind_value_benefits"/>
+            <field string="Payments Amount:" name="awards_in_kind_value_benefits"/>
+            <label name="awards_in_kind_payments_amount"/>
+            <field name="awards_in_kind_payments_amount"/>
 
-    <separator id="gains_forestry" string="Gains Forestry Explitation" colspan="7"/>
-    <label string="Monetary" id="gains_forestry_monetary"/>
-    <label string="Num of Parties:" name="gains_forestry_exploitation_monetary_parties"/>
-    <field name="gains_forestry_exploitation_monetary_parties"/>
-    <label string="Payments:" name="gains_forestry_exploitation_monetary_payments"/>
-    <field name="gains_forestry_exploitation_monetary_payments"/>
-    <label string="Withholding:" name="gains_forestry_exploitation_monetary_withholdings_amount"/>
-    <field name="gains_forestry_exploitation_monetary_withholdings_amount"/>
+            <separator id="gains_forestry" string="Gains Forestry Explitation" colspan="7"/>
+            <label string="Monetary" id="gains_forestry_monetary"/>
+            <label string="Num of Parties:" name="gains_forestry_exploitation_monetary_parties"/>
+            <field name="gains_forestry_exploitation_monetary_parties"/>
+            <label string="Payments:" name="gains_forestry_exploitation_monetary_payments"/>
+            <field name="gains_forestry_exploitation_monetary_payments"/>
+            <label string="Withholding:" name="gains_forestry_exploitation_monetary_withholdings_amount"/>
+            <field name="gains_forestry_exploitation_monetary_withholdings_amount"/>
 
-    <label string="In-Kind" id="gains_forestry_in_kind"/>
-    <label string="Num of Parties:" name="gains_forestry_exploitation_in_kind_parties"/>
-    <field name="gains_forestry_exploitation_in_kind_parties"/>
-    <label string="Value:" name="gains_forestry_exploitation_in_kind_value_benefits"/>
-    <field name="gains_forestry_exploitation_in_kind_value_benefits"/>
-    <label string="Payments Amount:" name="gains_forestry_exploitation_in_kind_payments_amount"/>
-    <field name="gains_forestry_exploitation_in_kind_payments_amount"/>
+            <label string="In-Kind" id="gains_forestry_in_kind"/>
+            <label string="Num of Parties:" name="gains_forestry_exploitation_in_kind_parties"/>
+            <field name="gains_forestry_exploitation_in_kind_parties"/>
+            <label string="Value:" name="gains_forestry_exploitation_in_kind_value_benefits"/>
+            <field name="gains_forestry_exploitation_in_kind_value_benefits"/>
+            <label string="Payments Amount:" name="gains_forestry_exploitation_in_kind_payments_amount"/>
+            <field name="gains_forestry_exploitation_in_kind_payments_amount"/>
 
-    <separator id="image_rights" string="Image Rights" colspan="7"/>
-    <label string="Monetary or In-Kind" id="image_rights_monetary_in_kind"/>
-    <label string="Num of Parties:" name="image_rights_parties"/>
-    <field name="image_rights_parties"/>
-    <label string="Payments:" name="image_rights_service_payments"/>
-    <field name="image_rights_service_payments"/>
-    <label string="Withholding:" name="image_rights_payments_amount"/>
-    <field name="image_rights_payments_amount"/>
+            <separator id="image_rights" string="Image Rights" colspan="7"/>
+            <label string="Monetary or In-Kind" id="image_rights_monetary_in_kind"/>
+            <label string="Num of Parties:" name="image_rights_parties"/>
+            <field name="image_rights_parties"/>
+            <label string="Payments:" name="image_rights_service_payments"/>
+            <field name="image_rights_service_payments"/>
+            <label string="Withholding:" name="image_rights_payments_amount"/>
+            <field name="image_rights_payments_amount"/>
 
-    <separator id="result" string="Result" colspan="7"/>
-    <label name="withholdings_payments_amount" colspan="6"/>
-    <field name="withholdings_payments_amount"/>
-    <label name="to_deduce" colspan="6"/>
-    <field name="to_deduce"/>
-    <label name="result" colspan="6"/>
-    <field name="result"/>
+            <separator id="result" string="Result" colspan="7"/>
+            <label name="withholdings_payments_amount" colspan="6"/>
+            <field name="withholdings_payments_amount"/>
+            <label name="to_deduce" colspan="6"/>
+            <field name="to_deduce"/>
+            <label name="result" colspan="6"/>
+            <field name="result"/>
 
-    <separator id="complementary" string="Complementary" colspan="7"/>
-    <label name="complementary_declaration"/>
-    <field name="complementary_declaration" colspan="2"/>
-    <label name="previous_declaration_receipt"/>
-    <field name="previous_declaration_receipt" colspan="3"/>
+            <separator id="complementary" string="Complementary" colspan="7"/>
+            <label name="complementary_declaration"/>
+            <field name="complementary_declaration" colspan="2"/>
+            <label name="previous_declaration_receipt"/>
+            <field name="previous_declaration_receipt" colspan="3"/>
 
-    <separator id="bank" string="Bank Information" colspan="7"/>
-    <label name="bank_account"/>
-    <field name="bank_account" colspan="6"/>
+            <separator id="bank" string="Bank Information" colspan="7"/>
+            <label name="bank_account"/>
+            <field name="bank_account" colspan="6"/>
+        </page>
+        <page string="Registers" id="registers" col="6">
+            <field name="registers" colspan="6"/>
+        </page>
+    </notebook>
 
     <separator id="111footer" colspan="7"/>
     <group id="state" colspan="3" col="6">
