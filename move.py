@@ -29,5 +29,5 @@ class MoveLine(metaclass=PoolMeta):
 
     @classmethod
     def delete(cls, lines):
+        cls.check_aeat111(lines)
         super().delete(lines)
-        reports = cls.check_aeat111(lines)
