@@ -813,7 +813,6 @@ class Report(Workflow, ModelSQL, ModelView):
                         if domain == [['OR']]:
                             continue
                         domain.extend(Tax._amount_domain())
-                        a = TaxLine.search(domain)
                         for tax_line in TaxLine.search(domain):
                             if (tax_line.move_line and tax_line.move_line.move
                                     and isinstance(
