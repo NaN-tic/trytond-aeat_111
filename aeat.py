@@ -924,7 +924,7 @@ class Report(Workflow, ModelSQL, ModelView):
     def draft(cls, reports):
         registers = [register for report in reports
             for register in report.registers]
-        if registers: 
+        if registers:
             Register.delete(registers)
 
     def create_file(self):
