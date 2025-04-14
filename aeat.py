@@ -579,7 +579,7 @@ class Report(Workflow, ModelSQL, ModelView):
         pool = Pool()
         Company = pool.get('company.company')
         company_id = cls.default_company()
-        if company_id:
+        if company_id is not None and company_id >= 0:
             company = Company(company_id)
             vat_code = company.party.tax_identifier and \
                 company.party.tax_identifier.code or None
