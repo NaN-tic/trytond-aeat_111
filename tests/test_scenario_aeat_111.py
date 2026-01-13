@@ -116,8 +116,7 @@ class Test(unittest.TestCase):
             ('group.kind', '=', 'purchase'),
             ('name', '=', 'IVA Deducible 21% (operaciones corrientes)'),
             ('parent', '=', None),
-        ],
-                        limit=1)
+        ], limit=1)
         ProductCategory = Model.get('product.category')
         account_category = ProductCategory(name="Account Category")
         account_category.accounting = True
