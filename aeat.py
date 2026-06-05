@@ -921,6 +921,7 @@ class Report(Workflow, ModelSQL, ModelView):
     @ModelView.button
     @Workflow.transition('draft')
     def draft(cls, reports):
+        Register = Pool().get('aeat.111.report.register')
         registers = [register for report in reports
             for register in report.registers]
         if registers:
