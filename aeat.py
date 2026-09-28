@@ -12,7 +12,7 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval, Bool, If
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
-from trytond.transaction import Transaction
+from trytond.transaction import Transaction, without_check_access
 from trytond.modules.currency.fields import Monetary
 
 _ZERO = Decimal("0.0")
@@ -959,7 +959,8 @@ class Report(Workflow, ModelSQL, ModelView):
         if isinstance(data, str):
             data = data.encode('iso-8859-1')
         self.file_ = self.__class__.file_.cast(data)
-        self.save()
+        with without_check_access():
+            self.save()
 
 
 class Register(ModelSQL, ModelView):
