@@ -515,7 +515,7 @@ class Report(Workflow, ModelSQL, ModelView):
             }), 'on_change_with_company_party')
     bank_account = fields.Many2One('bank.account', "Bank Account",
         domain=[
-            ('owners', '=', Eval('company_party')),
+            ('owners.id', '=', Eval('company_party', -1)),
             ], states={
             'required': Eval('type').in_(['U', 'D', 'X']),
             })
